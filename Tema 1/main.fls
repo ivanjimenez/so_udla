@@ -1,0 +1,15 @@
+PWD /Users/jimenezster/workspaces/so_udla/Tema 1
+INPUT /opt/local/etc/texmf/texmf.cnf
+INPUT /opt/local/var/db/texmf/web2c/pdftex/latex.fmt
+INPUT main.tex
+OUTPUT main.log
+INPUT beamer.cls
+INPUT beamer.cls
+INPUT beamerbasercs.sty
+INPUT beamerbasercs.sty
+INPUT beamerbasemodes.sty
+INPUT beamerbasemodes.sty
+INPUT beamerbasedecode.sty
+INPUT beamerbasedecode.sty
+INPUT /opt/local/share/texmf-texlive/tex/generic/oberdiek/ifpdf.sty
+INPUT /opt/local/share/texmf-texlive/tex/generic/oberdiek/ifpdf.sty

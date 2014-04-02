@@ -1,0 +1,218 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% assignment_template.tex
+% A template for assignments
+% https://github.com/mhyee/latex-examples/
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% LaTeX Preamble
+% Load packages and set options as needed
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Set the document class to "article"
+% Pass it "letterpaper" option
+\documentclass[letterpaper]{article}
+
+% We don't need the special font encodings, but still
+% good practice to include these. See:
+%
+% http://tex.stackexchange.com/questions/664/why-should-i-use-usepackaget1fontenc
+% http://dsanta.users.ch/resources/type1.html
+\usepackage[T1]{fontenc}
+\usepackage{ae,aecompl}
+\usepackage{listings}
+\usepackage{fancyhdr} 
+\usepackage{float} 
+\usepackage{graphicx}
+\restylefloat{figure} 
+
+
+\usepackage[applemac]{inputenc}
+% Packages for the math proof in this example
+\usepackage{amsmath}
+\usepackage{amsthm}
+
+% Set the margins
+\newcommand{\margin}{2cm}
+\usepackage[top=\margin,right=\margin,left=\margin,bottom=\margin]{geometry}
+
+% Use fancyhdr to define our own headers
+\usepackage{fancyhdr}
+\setlength{\headheight}{25pt} % Keeps LaTeX happy, takes care of some warnings
+\pagestyle{fancy}
+
+% Definitions to fill the header with
+% EDIT THESE FIELDS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\course}{  Sistemas Operativos \\ ACI 343 - NRC 8074}
+\newcommand{\assignment}{Práctica 1.1}
+\newcommand{\id}{RUT:}
+\newcommand{\name}{Nombre:}
+\renewcommand{\date}{ \today}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Now define the header. Make the text bold.
+% We'll get something like:
+%
+% 123456789             LaTeX 101
+% J. Random Student   Assignment N      Today's Date
+% --------------------------------------------------
+%
+% This layout is pretty simple, and should be enough for an assignment
+% If you want more, you can consult the documentation
+% http://www.ctan.org/tex-archive/macros/latex/contrib/fancyhdr/fancyhdr.pdf
+\lhead{\textbf{\id\\ \name}}
+\chead{\textbf{\course\\ \assignment}}
+\rhead{\textbf{\includegraphics[scale=0.35]{udla} \\ \date}}
+
+% Here is an example for customising the numbering
+% It changes the first level of numbering to bolded (a), (b), (c), etc
+\renewcommand{\theenumi}{\textbf{(\alph{enumi})}}
+\renewcommand{\labelenumi}{\theenumi}
+% Other options to play with are to change \theenumii, \labelenumii, and enumii for the second level of nesting,
+% and so on to \theenumiv, \labelenumiv, and enumiv for the fourth level of nesting.
+% The possible formats are \arabic (1, 2...), \alph (a, b...), \Alph (A, B...), \roman (i, ii...), and \Roman (I, II...)
+
+% Begin the actual typesetting, by starting the "document" environment
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+  \section*{Instalación de Linux y configuración del Entorno}
+  El objetivo de esta práctica es conseguir configurar la instalación de una MV basada en Ubuntu Server 12.04 LTS. A continuación se describe una ejemplificación de las tareas que debemos realizar nada más instalar nuestra distribución (dada en la MV de VBox). 
+   \subsection*{Tareas Post-instalación} 
+    \begin{enumerate}
+      \item
+      Descargar el archivo comprimido de la instancia de la MV (VirtualBox) que está en la biblioteca de la plataforma Edmodo. Luego hay que abrir el archivo con extensión .vbox y aparecerá un error configurando de adaptador de red el cual se subsana con la opción \emph{Modificar}. También hay otror error, el cual se soluciona con inhabilitar la opción USB de la MV en \emph{Configuración}.\newline
+      \newline
+      Una vez iniciada la MV, ingresar en el login: 
+       \newline
+      usuario: ubuntu\\
+      contraseña: reverse
+      
+
+      \item  Gestión de usuarios básica y comando sudo:
+	\begin{lstlisting}[language=bash]
+  	$ sudo passwd root # cambiar contraseña a root
+	$ sudo adduser usuario # crear usuario
+	$ sudo adduser usuario sudo # añadir al grupo sudores
+	$ sudo deluser usuario # eliminar usuario
+	
+	$ logout # salida de usuario
+	$ su - # cambio a root
+	$ sudo hostname nuevo_host # cambio del nombre del host
+	$ hostname # comprobar el nombre del host
+	$ uname -a # información del kernel
+	\end{lstlisting}
+	
+	\item Editor Vi
+	\begin{lstlisting}[language=bash]
+	- Cursor movement—h, j, k, l (left, down, up, and right) . Delete character—x
+	- Delete line—dd	
+	- Mode toggle—Esc, Insert (or i)
+	- Quit—:q
+	- Quit without saving—:q!
+	- Save — :w
+	- Save and quit — :wq
+	- Run a shell command—:sh (use ’exit’ to return) 
+	- Text search—/
+	- :#	move to line #
+
+	- :$	move to last line of file
+
+  $ sudo vi $HOME/.bashrc 
+  #eliminar el comentario a force_color_prompt = yes
+  $ source $HOME/.bashrc # para que tengo los efectos
+
+	\end{lstlisting}
+      
+      \item Servicios (/etc/init.d):
+	\begin{lstlisting}[language=bash]
+	
+  	$ sudo services --status-all
+	$ sudo services ssh status
+	$ sudo services ssh --status-all # para ver todos los estados
+	\end{lstlisting}
+	
+	\item Redes básico:
+	\begin{lstlisting}[language=bash]
+	
+  	$ sudo apt-get install ethtool 
+	$ ifconfig -a	
+	$ ifconfig eth0
+	$ sudo ifdown eth0
+	$ sudo ifup eth0
+	
+	\end{lstlisting}
+            
+    \end{enumerate}
+
+  \subsection*{Uso de apt-get}
+    \begin{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%      \item
+%      Are there irrational numbers $a, b$ such that $a^b$ is rational?
+%
+ %     \begin{proof}
+ %       Suppose $\sqrt{2}^{\sqrt{2}}$ is rational. Then we are done.
+
+%        Otherwise, $\sqrt{2}^{\sqrt{2}}$ is irrational. Then let $a = \sqrt{2}^{\sqrt{2}}$ and let $b=\sqrt{2}$. So %we have
+        % \Bigg and \bigg adjust the size of the parentheses
+        % \! is a negative space
+ %       \[ a^b = \Bigg(\!\sqrt{2}^{\sqrt{2}}\Bigg)^{\sqrt{2}} = \sqrt{2}^{\sqrt{2} \cdot \sqrt{2}} = \bigg(\!\sqrt{2}\bigg)^2 = 2. \]
+
+%        The proof that $\sqrt{2}$ is irrational is left as an exercise for the reader.
+%      \end{proof}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    	 \item Teclado e idioma en español:
+	\begin{lstlisting}[language=bash]
+	
+  	$ sudo apt-get install console-data #teclado
+  	$ sudo dpkg-reconfigure console-data # configuración de teclado
+  	$ sudo dpkg-reconfigure keyboard-configuration # tipo de teclado
+  	$ sudo setupcon
+	
+	$ sudo apt-get install language-pack-es # installer el paquete de idioma
+	
+	Modificar los siguientes ficheros:
+	
+	$ sudo vi /etc/environment
+ 	$ sudo vi /etc/default/locale
+  
+         Añadiendo las siguientes líneas:
+        
+ 	 LANG=”es_ES.UTF-8?
+ 	 LC_ALL=”es_ES.UTF-8?
+  	 LANGUAGE=”es_ES”
+	
+	Configuramos el orden de importancia de los locales:
+	es_ES.UTF-8 UTF-8
+	en_US.UTF-8 UTF-8
+	
+	$ sudo vi /var/lib/locales/supported.d/local 
+	
+	$ sudo dpkg-reconfigure locales # reconfigurar locales
+	
+  	$ sudo reboot # para los cambios
+  	$ locale # comprobar el idioma configurado
+  	$ locale -a # comprobar todos los lenguajes
+	
+	\end{lstlisting}
+
+	
+	\item Instalación de paquetes y actualizaciones:
+	\begin{lstlisting}[language=bash]
+	
+  	$ sudo apt-get update # actualización de repositorios
+	$ sudo apt-get upgrade # actualización de qué programas tienen actualizaciones	
+	$ sudo apt-get install unattended-upgrades # desantendida
+	$ sudo aptitude # instalador de paquetes en modo interfaz de texto
+	$ dpkg -l #paquetes instalados en el sistema
+	
+	\end{lstlisting}
+	
+
+    \end{enumerate}
+    
+
+\end{document}
+

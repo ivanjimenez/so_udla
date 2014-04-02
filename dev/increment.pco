@@ -1,0 +1,23 @@
+const int m = 5;
+int n;
+
+void incr(char id)
+{
+	int 1:
+	for (i=1; i<=m; i= i+1){
+		
+		n = n + 1;
+		printf(" n= %d, i= %d",n,id);
+		printf(""i= %d",id);
+	}
+}
+
+main() {
+
+	n = 0;
+	cobgegin
+	{
+		incr('A'); incr('B'); incr('C');
+		printf("The sum is: %d",n);
+	}
+}

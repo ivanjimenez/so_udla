@@ -1,0 +1,28 @@
+# Fdb version 3
+["dvips"] 0 "main.dvi" "main.ps" "main" 1393886262
+  "main.dvi" 1390252956 206996 4681d4f38275118aefc46f51a4f08277 "latex"
+  (generated)
+  "main.ps"
+["latex"] 1393886278 "main.tex" "main.dvi" "main" 1393886280
+  "/opt/local/etc/texmf/texmf.cnf" 1393267690 29815 4014c3ae47556471d47448e366328ef4 ""
+  "/opt/local/share/texmf-texlive/tex/generic/oberdiek/ifpdf.sty" 1371546427 7140 ece2cc23d9f20e1f53975ac167f42d3e ""
+  "/opt/local/var/db/texmf/web2c/pdftex/latex.fmt" 1393268215 720285 9c694cc2ac6a3aefef40c03978a4b90e ""
+  "beamer.cls" 1393537035 11649 6e1e2b74f74919d954671e8229c218d5 ""
+  "beamerbasedecode.sty" 1393538252 8195 2d67b2dab40371290f63d9682f627fd1 ""
+  "beamerbasemodes.sty" 1393538130 8271 dc45c37a0ccf622a7879e513e9cc10ff ""
+  "beamerbaseoptions.sty" 0 -1 0 ""
+  "beamerbasercs.sty" 1393537095 1149 0fcf6612c3d95fd3f4c9ca5e2f10d559 ""
+  "main.aux" 1390255161 4722 50b0f8e1bf3fcec6b2886938e4675066 ""
+  "main.tex" 1393886272 5473 6a42deb42941c2b26bf9db252ee514c4 ""
+  (generated)
+  "main.snm"
+  "main.out"
+  "main.log"
+  "main.dvi"
+  "main.aux"
+  "main.toc"
+  "main.nav"
+["ps2pdf"] 0 "main.ps" "main.pdf" "main" 1393886262
+  "main.ps" 1390252956 402885 157558b444d0212c0f5c0be9d76b4010 "dvips"
+  (generated)
+  "main.pdf"
