@@ -9,7 +9,13 @@
 	sudo adduser (usuario) # crear usuario
 	sudo adduser <usuario> sudo
 	sudo deluser <usuario>
-	sudo usermod -l new_user_name old_user_name
+	sudo userdel -r juan # borrar también el home
+	sudo usermod -l new_user_name old_user_name # cambio de username
+	usermod -d /ruta/al/directorio/nuevo/ usuario # cambiar de home
+	
+	sudo addgroup nombregrupo # crear grupo
+	
+	sudo adduser nombreusuario nombregrupo # añadir usuario a un grupo
 	
 	logout # salida de usuario
 	su - # cambio a root
@@ -110,10 +116,20 @@ sudo ifconfig eth0 192.168.1.5 netmask 255.255.255.0 up
 
 sudo route add default gw 10.0.0.1 eth0
 
+sudo /etc/init.d/networking start | stop   # para reiniciar servicios de red
+
 ##### Instalación de manpages en español
 
 sudo apt-get install manpages-es manpages-es-extra
 sudo dpkg-reconfigure locales
+
+##### Uso del disco
+
+$ df --total -h
+
+#### Espacio ocupado por un archivo
+
+$ du -ah
 
 
 
