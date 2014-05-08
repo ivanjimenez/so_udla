@@ -1,0 +1,587 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% assignment_template.tex
+% A template for assignments
+% https://github.com/mhyee/latex-examples/
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% LaTeX Preamble
+% Load packages and set options as needed
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Set the document class to "article"
+% Pass it "letterpaper" option
+\documentclass[letterpaper]{article}
+
+% We don't need the special font encodings, but still
+% good practice to include these. See:
+%
+% http://tex.stackexchange.com/questions/664/why-should-i-use-usepackaget1fontenc
+% http://dsanta.users.ch/resources/type1.html
+\usepackage[T1]{fontenc}
+\usepackage{ae,aecompl}
+\usepackage{listings}
+\usepackage{fancyhdr} 
+\usepackage{float} 
+\usepackage{graphicx}
+\restylefloat{figure} 
+\usepackage{hyperref}
+
+
+\usepackage[applemac]{inputenc}
+% Packages for the math proof in this example
+\usepackage{amsmath}
+\usepackage{amsthm}
+
+% Set the margins
+\newcommand{\margin}{2cm}
+\usepackage[top=\margin,right=\margin,left=\margin,bottom=\margin]{geometry}
+
+% Use fancyhdr to define our own headers
+\usepackage{fancyhdr}
+\setlength{\headheight}{25pt} % Keeps LaTeX happy, takes care of some warnings
+\pagestyle{fancy}
+
+% Definitions to fill the header with
+% EDIT THESE FIELDS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\course}{  Sistemas Operativos \\ ACI 343}
+\newcommand{\assignment}{Práctica 2.1: Gestión de Procesos en Linux}
+\newcommand{\id}{RUT:}
+\newcommand{\name}{Nombre:}
+\renewcommand{\date}{ \today}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Now define the header. Make the text bold.
+% We'll get something like:
+%
+% 123456789             LaTeX 101
+% J. Random Student   Assignment N      Today's Date
+% --------------------------------------------------
+%
+% This layout is pretty simple, and should be enough for an assignment
+% If you want more, you can consult the documentation
+% http://www.ctan.org/tex-archive/macros/latex/contrib/fancyhdr/fancyhdr.pdf
+\lhead{\textbf{\id\\ \name}}
+\chead{\textbf{\course\\ \assignment}}
+\rhead{\textbf{\includegraphics[scale=0.35]{udla} \\ \date}}
+
+% Here is an example for customising the numbering
+% It changes the first level of numbering to bolded (a), (b), (c), etc
+\renewcommand{\theenumi}{\textbf{(\alph{enumi})}}
+\renewcommand{\labelenumi}{\theenumi}
+% Other options to play with are to change \theenumii, \labelenumii, and enumii for the second level of nesting,
+% and so on to \theenumiv, \labelenumiv, and enumiv for the fourth level of nesting.
+% The possible formats are \arabic (1, 2...), \alph (a, b...), \Alph (A, B...), \roman (i, ii...), and \Roman (I, II...)
+
+% Begin the actual typesetting, by starting the "document" environment
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\section*{Gestión de procesos:}
+	
+  \begin{itemize}
+  	\item En Linux se están ejecutando al momento un gran número de procesos:
+	\begin{itemize}
+	\item procesos de sistema (kernel, daemons)
+	\item procesos de usuarios
+	\end{itemize}
+	\item En esta sección trataremos la gestión de los procesos que se están ejecutando:
+	\begin{itemize}
+	\item listar procesos en ejecución
+	\item detener y matar procesos
+	\item controlar la prioridad de ejecución
+	\end{itemize}
+\subsection*{Comando ps:}
+ \item Existen varias herramientas para ver los procesos en ejecución, la más importante es el comando \emph{ps} (sin opciones, ps sólo muestra los procesos lanzados desde el terminal actual y con el mismo EUID que el usuario quien lo lanzó:
+\begin{lstlisting}[language=bash]
+$ ps 
+
+PID TTY          TIME CMD
+ 1625 pts/0    00:00:00 bash
+ 1784 pts/0    00:00:00 ps
+\end{lstlisting}
+
+\item ps tiene un gran número de opciones, que se pueden especificar de 3 maneras:
+\begin{itemize}
+\item opciones UNIX: pueden agruparse y se preceden por un guión: ps -ef 
+\item opciones BSD: pueden agruparse y van sin guión: ps aux
+\item opciones largas GNU: precedidas de dos guiones: ps --user tomas
+\end{itemize}
+
+\begin{itemize}
+
+\item -e ó ax ó -Af: muestra todos los procesos
+\item -u (o U o --user) usuario: muestra los procesos de un usuario
+\item u: salida en formato de usuario
+\item j: salida en formato job (muestra PID, PPID, etc.)
+\item l ó -l: salida en formato largo
+\item f: muestra un árbol con la jerarquía de procesos
+\item -o (ó -o format) formato: permite definir el formato de salida
+\begin{lstlisting}[language=bash]
+$ ps -o ruser,pid,comm=Comando
+\end{lstlisting}
+
+\end{itemize}
+
+\item Ejemplo:
+\begin{lstlisting}[language=bash]
+$ ps aux
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.0  0.3   3504  1908 ?        Ss   18:05   0:02 /sbin/init
+root         2  0.0  0.0      0     0 ?        S    18:05   0:00 [kthreadd]
+root         3  0.0  0.0      0     0 ?        S    18:05   0:00 [ksoftirqd/0]
+root         5  0.0  0.0      0     0 ?        S    18:05   0:00 [kworker/u:0]
+root         6  0.0  0.0      0     0 ?        S    18:05   0:00 [migration/0]
+root         7  0.0  0.0      0     0 ?        S    18:05   0:00 [watchdog/0]
+root         8  0.0  0.0      0     0 ?        S<   18:05   0:00 [cpuset]
+root         9  0.0  0.0      0     0 ?        S<   18:05   0:00 [khelper]
+root        10  0.0  0.0      0     0 ?        S    18:05   0:00 [kdevtmpfs]
+root        11  0.0  0.0      0     0 ?        S<   18:05   0:00 [netns]
+root        12  0.0  0.0      0     0 ?        S    18:05   0:00 [sync_supers]
+root        13  0.0  0.0      0     0 ?        S    18:05   0:00 [bdi-default]
+root        14  0.0  0.0      0     0 ?        S<   18:05   0:00 [kintegrityd]
+root        15  0.0  0.0      0     0 ?        S<   18:05   0:00 [kblockd]
+root        16  0.0  0.0      0     0 ?        S<   18:05   0:00 [ata_sff]
+\end{lstlisting}
+
+podemos ver los siguientes campos:
+	\begin{itemize}
+	\item \%CPU y \%MEM: porcentajes de uso de CPU y memoria.
+	\item VSZ: memoria virtual del proceso, en KBytes.
+	\item RSS: tamaño de la memoria residente (resident set size) en KBytes.
+	\item STAT: estado del proceso; puede ser:
+
+	
+   	 \begin{tabular}{|ll|}
+    \hline
+    Código & Significado                                       \\
+    D      &   	 		 		 	 	Uninterruptible sleep (usualmente IO \\
+    R      & Ejecutándose (running) o en cola de ejecución     \\
+    S      & Interruptible sleep (p.e. esperando un evento)    \\
+    T      & Detenido                                          \\
+    Z      & Proceso zombie                                    \\ \hline
+    \end{tabular}
+  
+  si se utiliza el formato BSD puede aparecer otro código acompañado al principal:\\
+
+    \begin{tabular}{|ll|}
+    \hline
+    Código & Significado                            \\
+    <      &   	 		 		 	 	alta prioridad            \\
+    N      & baja prioridad                         \\
+    L      & páginas bloqueadas (locked) en memoria \\
+    s      & líder de sesión                        \\
+    +      & Proceso en foreground                  \\ \hline
+    \end{tabular}
+
+	
+	\end{itemize}
+\end{itemize}
+	%\begin{figure}[ht!]
+	%\centering
+	%\includegraphics[width=140mm]{ipcop_network}
+	%\caption{Estructura de IPCop}
+	%\label{overflow}
+	%\end{figure}
+
+   \subsection*{Comando \textbf{pstree}} 
+    \begin{itemize}
+    \item muestra el árbol de procesos (similar a ps f)
+  \begin{lstlisting}[language=bash]
+ init-+-acpid
+        |-atd
+        |-bonobo-activati
+        |-clock-applet
+        |-cron
+        |-cupsd
+        |-dbus-daemon-1
+        |-dcopserver
+        |-dirmngr
+        |-2*[esd]
+        |-events/0-+-aio/0
+        | |-ata/0
+        | |-ata/1
+        |          |-kblockd/0
+        | |-khelper
+  \end{lstlisting}
+ \item Con \emph{pstree -p} podemos visualizar también el PID del proceso.
+ \end{itemize}
+
+
+   \subsection*{Comando \textbf{top}}
+   ps nos daba una versión estática de los procesos, mientras que top:
+   \begin{itemize}
+   \item top nos da una lista actualizada a intervalos
+   	\begin{lstlisting}[language=bash]
+top - 20:43:56 up  2:38,  2 users,  load average: 2,00, 2,01, 1,96
+Tareas:  70 total,   3 running,  67 sleeping,   0 stopped,   0 zombie
+%Cpu(s): 98,6 us,  1,4 sy,  0,0 ni,  0,0 id,  0,0 wa,  0,0 hi,  0,0 si,  0,0 st
+KiB Mem:    508344 total,   124508 used,   383836 free,    21908 buffers
+KiB Swap:   521212 total,        0 used,   521212 free,    68708 cached
+
+  PID USER      PR  NI  VIRT  RES  SHR S  %CPU %MEM    TIME+  COMMAND                     
+ 2071 nosudo    20   0  5428  280  228 R  49,5  0,1  38:13.33 yes                         
+ 2072 nosudo    20   0  5428  284  228 R  49,2  0,1  38:21.20 yes                         
+  357 syslog    20   0 30048 1380 1076 S   0,3  0,3   0:00.94 rsyslogd                    
+  971 root      20   0  9852 1460 1064 S   0,3  0,3   0:22.70 VBoxService                 
+    1 root      20   0  3504 1908 1296 S   0,0  0,4   0:02.00 init                        
+    2 root      20   0     0    0    0 S   0,0  0,0   0:00.02 kthreadd                    
+    3 root      20   0     0    0    0 S   0,0  0,0   0:00.36 ksoftirqd/0                 
+    5 root      20   0     0    0    0 S   0,0  0,0   0:00.49 kworker/u:0                 
+    6 root      rt   0     0    0    0 S   0,0  0,0   0:00.00 migration/0                 
+    7 root      rt   0     0    0    0 S   0,0  0,0   0:01.44 watchdog/0
+    ..........
+	\end{lstlisting}
+	
+	\item en la cabecera nos muestra un resumen del estado del sistema:
+		\begin{itemize}
+			\item hora actual, tiempo que el sistema lleva encendido, el número de usuarios conectados y la carga media del sistema para los últimos 1, 5, y 15 minutos
+			\item número total de tareas y resumen por estado
+			\item estado de ocupación de la CPU y la memoria
+		\end{itemize}
+	\item por defecto, los procesos se muestran ordenados por porcentaje de uso de CPU (los más costosos arriba).
+	\item pulsando h mientras se ejecuta top, obtenemos una lista de comandos interactivos.
+	\item para salir, q
+	\item Algunos campos de top:
+		\begin{itemize}
+		\item VIRT: Tamaño total del proceso (código, datos y librerías com- partidas cargadas), VIRT=SWAP+RES
+		\item SWAP: Memoria que ha sido swapped out o que aún no ha sido cargada
+		\item RES: Memoria residente (RAM ocupada por el proceso)
+		\item CODE y DATA: Memoria ocupada por el código y datos (datos y
+pila, pero no librerías compartidas) del proceso.
+		\item SHR: Memoria compartida (memoria que puede ser compartida con otros procesos)
+		\item P: Última CPU usada (SMP)
+		\item nFLT: Número de fallos de página para el proceso
+		\end{itemize}
+   \end{itemize}
+
+   \section*{Manipulación de procesos:}
+   Mediante la combinación de Ctrl-C y Ctrl-Z podemos terminar y detener un proceso.
+   \begin{itemize}
+   \item esas combinaciones envían señales a los procesos.
+   \item el comando básico para enviar señales a un proceso es kill.
+   
+   \end{itemize}
+	\subsection*{Commando \emph{kill}}
+	\begin{itemize}
+	\item kill -l lista el conjunto de señales
+		\begin{lstlisting}[language=bash]
+$ kill -l
+
+1) SIGHUP	 2) SIGINT	 3) SIGQUIT	 4) SIGILL	 5) SIGTRAP
+ 6) SIGABRT	 7) SIGBUS	 8) SIGFPE	 9) SIGKILL	10) SIGUSR1
+11) SIGSEGV	12) SIGUSR2	13) SIGPIPE	14) SIGALRM	15) SIGTERM
+16) SIGSTKFLT	17) SIGCHLD	18) SIGCONT	19) SIGSTOP	20) SIGTSTP
+21) SIGTTIN	22) SIGTTOU	23) SIGURG	24) SIGXCPU	25) SIGXFSZ
+26) SIGVTALRM	27) SIGPROF	28) SIGWINCH	29) SIGIO	30) SIGPWR
+31) SIGSYS	34) SIGRTMIN	35) SIGRTMIN+1	36) SIGRTMIN+2	37) SIGRTMIN+3
+38) SIGRTMIN+4	39) SIGRTMIN+5	40) SIGRTMIN+6	41) SIGRTMIN+7	42) SIGRTMIN+8
+43) SIGRTMIN+9	44) SIGRTMIN+10	45) SIGRTMIN+11	46) SIGRTMIN+12	47) SIGRTMIN+13
+48) SIGRTMIN+14	49) SIGRTMIN+15	50) SIGRTMAX-14	51) SIGRTMAX-13	52) SIGRTMAX-12
+53) SIGRTMAX-11	54) SIGRTMAX-10	55) SIGRTMAX-9	56) SIGRTMAX-8	57) SIGRTMAX-7
+58) SIGRTMAX-6	59) SIGRTMAX-5	60) SIGRTMAX-4	61) SIGRTMAX-3	62) SIGRTMAX-2
+63) SIGRTMAX-1	64) SIGRTMAX
+		\end{lstlisting}
+	\item para ver su significado, ver \emph{man 7 signal}
+	Sintaxis de \textbf{kill}\\
+	\begin{lstlisting}[language=bash]
+	kill [señal] PID
+	\end{lstlisting}
+	
+	\item \emph{señal} puede indicarse mediante el número o el código:
+	\begin{itemize}
+	
+	\item \textbf{kill -9} y \textbf{kill -KILL} son equivalentes.
+	\item las señales más comunes son:
+		\begin{itemize}
+		\item SIGHUP (1): cuelgue del terminal o muerte del proceso controlador
+		\item SIGTERM (15): mata el proceso permitiéndole terminar correctamente
+		\item SIGKILL (9): mata el proceso sin permitirle terminar
+		\item SIGSTOP (19): para el proceso
+		\item SIGCONT(18): continúa si parado.
+		\item SIGINT (2): Interrupción de teclado (Ctrl-C)
+		\item SIGTSTP (20): stop de teclado (Ctrl-Z)
+		\item SIGQUIT (3): salida de teclado (Ctrl-\textbackslash)
+		
+		\end{itemize}
+		
+		Algunas características de las señales:
+		\item La señal que se envía por defecto es TERM (15)
+			\begin{itemize}
+			\item los procesos pueden ignorar esta señal y no terminar.
+			\item las señales KILL (9) y STOP(19) no pueden ignorarse.
+			
+			\end{itemize}
+		\item En bash, cuando enviamos una señal SIGHUP a un shell, este se lo reenvía a todos sus hijos.
+		\item Cuando cerramos un terminal en un entorno gráfico, o abandonamos una sesión, se envía un SIGHUP a todos sus hijos
+		\item La mayoría de los demonios (daemons) responden a la señal SIGHUP volviendo a leer sus ficheros de configuración:
+		\begin{itemize}
+		\item en vez de matar y reiniciar un demonio podemos hacer un kill -HUP para reiniciarlo
+		
+		\end{itemize}
+	\end{itemize}
+	\end{itemize}
+\subsection*{Otros comandos útiles}
+	\textbf{pgrep} busca una lista de procesos para localizar el PID a partir del nombre (similar a \textbf{ps | grep})
+	\begin{lstlisting}[language=bash]
+		 $ pgrep -u root sshd # PID del proceso sshd de root
+	\end{lstlisting}
+\textbf{pkill} permite enviar señales a los procesos indicándolos por nombre en vez de por PID.
+
+	\begin{lstlisting}[language=bash]
+		 $ pkill -9 proceso
+	\end{lstlisting}
+	\begin{itemize}
+		\item \textbf{Cuidado con pkill: } si hay varios procesos con el mismo nombre los mata a todos. \\
+
+		\item \textbf{killall} similar a pkill, pero no admite patrones en el nombre, y tiene otras opciones. \\
+
+		\item \textbf{nohup} normalmente, cuando salimos de un login shell (logout) o cerramos una un terminal, se envía una señal SIGHUP a todos los procesos hijos.
+		\begin{itemize}
+		\item si lanzamos un proceso en background y salimos de la sesión el proceso muere al morir el shell desde que lo iniciamos.
+		El comando \textbf{nohup} permite lanzar un comando ignorando las señales SIGHUP.
+		
+		\end{itemize}
+ 		\begin{lstlisting}[language=bash]
+		$ nohup comando # la salida del comando se redirige al fichero nohup.out
+	\end{lstlisting}
+	 \item \textbf{exec} es otra forma de crear un proceso que no se muere al morirse el shell.
+	
+\item \textbf{Ejecución en background y foreground}: las órdenes lanzadas en background permiten tener el control de la consola mientras se ejecuta en segundo plano. Si queremos que el proceso se ejecute en primer plano, tenemos que hacernos valer de la orden fg.\\
+\begin{lstlisting}[language=bash]
+$ yes > /dev/null &  # lanzado en background
+[1] 27058
+$ fg 1
+yes > /dev/null
+\end{lstlisting}
+\item Ejemplos
+\newline
+
+	Ejemplo1:  
+	 \begin{lstlisting}[language=bash]
+
+$ yes >/dev/null &
+[1] 9848
+$ yes >/dev/null &
+[2] 9849
+$ ps
+PID TTY      TIME  CMD
+9834 pts/7 00:00:00 bash
+9848 pts/7 00:00:02 yes
+9849 pts/7 00:00:01 yes
+9850 pts/7 00:00:00 ps
+$ kill -STOP 9849
+[2]+ Stopped
+$ jobs
+[1]- Running
+[2]+ Stopped
+$ kill -CONT 9849
+$ jobs
+[1]- Running
+[2]+ Running
+$ kill -KILL 9848
+$ kill -1 9849
+[1]- Matado
+[2]+ Colgar
+	 \end{lstlisting}
+
+Ejemplo2:
+
+
+\begin{lstlisting}[language=bash]
+$ yes > /dev/null &
+[1] 14724
+$ yes > /dev/null &
+[2] 14725
+yes >/dev/null &
+yes >/dev/null &
+yes >/dev/null
+yes >/dev/null
+$ ps
+PID TTY      TIME  CMD
+7083 pts/3 00:00:00 bash
+14724 pts/3 00:00:02 yes
+14725 pts/3 00:00:02 yes
+14726 pts/3 00:00:00 ps
+$ pgrep yes
+14724
+14725
+$ pkill -9 yes
+$ ps
+PID TTY
+7083 pts/3 00:00:00 bash
+14730 pts/3 00:00:00 ps
+[1]- Matado         yes > /dev/null
+[2]+ Matado         yes > /dev/null
+\end{lstlisting}
+Ejemplo 3
+\begin{lstlisting}[language=bash]
+$ nohup yes > /dev/null &
+[1] 9620
+$ kill -HUP 9620
+$ ps
+PID TTY      TIME  CMD
+8293 pts/5 00:00:00 bash
+9620 pts/5 00:00:13 yes
+9621 pts/5 00:00:00 ps
+$ kill 9620
+[1]+ Terminado         nohup yes > /dev/null
+\end{lstlisting}
+
+\subsection*{Comandos \textbf{nice} y \textbf{renice}}
+Cuando un proceso se ejecuta, lo hace con una cierta \emph{prioridad}.
+\begin{itemize}
+\item las prioridades van desde -20 (más alta) hasta 19 (más baja).
+\item los procesos se ejecutan con prioridad 0 por defecto. Además, un usuario normal sólo puede asignar prioridades más bajas (números positivos), mientras que \emph{roto} puede asignar prioridades más altas (números negativos).
+\end{itemize}
+
+Sintaxis:\\
+\begin{lstlisting}[language=bash]
+$ nice -n <ajuste> <comando>  # la prioridad es modificada por ajuste
+\end{lstlisting}
+
+Ejemplo:\\
+
+\begin{lstlisting}[language=bash]
+$ cat script1.sh
+#!/bin/bash
+yes > /dev/null &
+$ nice -n 10 ./script1.sh 
+$ ps -o pid,pri,ni,stat,cmd
+  PID PRI  NI STAT CMD
+ 4387  19   0 Ss   -bash
+ 4585  19   0 R    yes
+ 4613  19   0 R+   ps -o pid,pri,ni,stat,cmd
+$ nice -n -1 4585 # No va a funcionar al bajar la prioridad y no ser root.
+\end{lstlisting}
+
+Con \emph{renace} podemos modificar la prioridad:\\
+
+Sintaxis:\\
+\begin{lstlisting}[language=bash]
+$ renice pri [-p pid] [-g pgrp] [-u user] # la prioridad es modificada por ajuste
+\end{lstlisting}
+
+Si por ejemplo:\\
+\begin{lstlisting}[language=bash]
+$ ./script1.sh
+[1] 4455
+$ renice 10 -p 4455 # cambia por pid
+$ renice 3 -u user01 # cambia para los procesos de usuario especificado.
+\end{lstlisting}
+
+
+
+\end{itemize}
+
+\subsection*{\textbf{Análisis básico del rendimiento del sistema}}
+
+Además del ps y el top, existen otro comandos básicos que nos pueden mostrar el estado del sistema en cuanto a uso de CPU y consumo de memoria, no obstante, veremos otros más relacionados con estos usos ( vmstat y sar )
+
+\textbf{ultime}: muesta la hora actual, el tiempo que el sistema lleva encendido, el número de usuarios conectados y la carga media del sistema para los últimos 1, 5 y 15 minutos (lo mismo que en la primera línea de top).
+
+\begin{lstlisting}[language=bash]
+$ uptime
+ 11:35:34 up  1:40,  5 users,  load average: 9,80, 8,26, 5,81
+\end{lstlisting}
+
+\textbf{w}: nos da la información sobre los usuarios y sus procesos.\\
+\begin{lstlisting}[language=bash]
+$ w
+ 12:08:15 up  2:13,  5 users,  load average: 9,73, 9,58, 9,21
+USUARIO  TTY      DE               LOGIN@   IDLE   JCPU   PCPU WHAT
+admin    tty1                      19abr14  1:05m  2.74s  2.63s -bash
+admin    pts/0    192.168.1.100    19abr14 10días  0.43s  0.43s -bash
+admin    pts/1    10.1.80.169      jue19    4días  0.31s  0.31s -bash
+admin    pts/2    10.1.80.169      jue19    4días  0.33s  0.33s -bash
+admin    pts/5    192.168.1.100    11:27    1.00s  1:43   0.00s w
+\end{lstlisting}
+
+Tenemos:\\
+\begin{itemize}
+\item LOGIN\@ la hora a la que se conectó el usuario.
+\item IDLE tiempo que lleva ocioso el terminal.
+\item JCPU el tiempo de CPU consumido por los procesos que se ejecutan en el TTY.
+\item PCPU tiempo consumido por el proceso actual (el que aparece en la columna WHAT).
+
+\end{itemize}
+
+\textbf{free}: muestra la cantidad de memoria libre y usada en el sistema, tanto para la memoria física como para el swap, así como los bufares usados por el kernl (similar a la cabecera de top).
+
+Ejemplo:\\
+\begin{lstlisting}[language=bash]
+$ free
+             total       usado       libre     compart.    búffers     almac.
+Mem:        508344     201480     306864          0      29324     130460
+-/+ buffers/cache:      41696     466648
+Intercambio:     521212          0     521212
+\end{lstlisting}
+\begin{itemize}
+\item Columna \emph{shared} está obsoleta.
+\item Opciones: -b, -k, -m, -g memoria en bytes/Kb/Mb/Gb.
+\item Opción: -t muestra una línea con el total de memoria (física + swap).
+\item Opción: -s delay, muestra la memoria de forma continua, delay = segundos.
+
+\end{itemize}
+
+\textbf{htop}: Es una herramienta gráfica, basada en top, pero con muchas más opciones de gestión de procesos. Es como el panel de tareas de Windows. Se pueden finalizar procesos y otras tareas.
+
+\section*{\textbf{Ejercicios:}}
+\begin{enumerate}
+\item Estudia la orden uptime:
+\begin{itemize}
+	\item ¿Cuánto tiempo lleva funcionando el sistema?
+	\item ¿Cuántos usuarios hay trabajando?
+	\item ¿Qué orden ofrece en su cabecera la misma información que uptime?
+
+\end{itemize}
+
+\item La orden potree muestra el árbol de procesos que hay en ejecución. Comprueba, haciendo uso de la orden ps -la y de valores "PID" y "PPID" mostrados para cada proceso y que efectivamente los procesos son padre e hijo.
+
+\item Crea el fichero /home/usuario/loop.sh con el siguiente contenido:
+
+
+\begin{lstlisting}[language=bash]
+	
+#!/bin/bash
+while : 
+do
+echo 'nada' > /dev/null &
+done
+	
+\end{lstlisting}
+
+\item Ejecuta la orden top en una terminal y comprueba el estado del sistema, a continuación lanza loop.sh en otra. Observa cómo cambia el estado del sistema al lanzar el script. En una tercera terminal, comprueba con ps los procesos en ejecución.
+
+\item Usando la combinación de teclas “Control-Z” para el proceso loop.sh. Una vez parado comprueba que la información mostrada por top va cambiando, hasta llegar un momento en el que no muestra información sobre dicho proceso. Fíjate que ha aumentado el número de procesos parados.
+
+\item Reinicia el proceso con la orden fg y comprueba que vuelve a aparecer la información sobre el proceso.
+
+\item Observa si mientras está en ejecución ese proceso cambia la carga media del sistema.
+
+\item ¿Por qué aparece siempre el proceso loop.sh con el mismo PID si se lanza a sí mismo una y otra vez durante su ejecución?
+
+\item Cambia la velocidad de referesco de top a 2s.
+
+\item Desde el top, cambia la prioridad del proceso, dándole un valor menor, por ejemplo
+10.
+
+\item Usando la orden nice lanza otro proceso bucle con la prioridad de 5.
+
+\item Observa que la CPU se le asignará más al segundo loop.sh lanzado, que tiene más
+prioridad, que al primero que se ejecutó, que tiene menos prioridad.
+
+\item Asigna mediante renice una prioridad de 19 al bucle que lanzaste con prioridad 5.
+¿Cómo afecta esto a la ejecución de los dos procesos?
+
+\item Desde el top mata el loop.sh con prioridad 10. Fíjate que ahora, a pesar de que el que
+queda tiene prioridad 19, se le asigna más de la CPU que antes.
+
+\item Haciendo uso de la orden kill, para el proceso loop.sh que aún queda en ejecución.
+Después usando también kill reanúdalo y finalmente elimínalo.
+
+\end{enumerate}
+ 
+
+\end{document}
+
