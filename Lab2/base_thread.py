@@ -3,7 +3,7 @@ import threading
 
 class CountdownThread(threading.Thread):
     def __init__(self,count):
-        threading.Thrad.__init__(self)
+        threading.Thread.__init__(self)
         self.count = count
     def run(self):
         while self.count > 0:
