@@ -1,0 +1,6 @@
+#!/bin/bash
+# Mi primer script
+
+echo "La variable MI_NOMBRE es $MI_NOMBRE"
+MI_NOMBRE="ijimenez"
+echo "La variable MI_NOMBRE es $MI_NOMBRE"
