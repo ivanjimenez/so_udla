@@ -1,10 +1,10 @@
 # shared_value_lock_ex.py
 #
-# Ejemplo sencillo con exclusión mutua
+# 
 
 import threading
 
-x      = 0                   # A shared value
+x = 0                   # A shared value
 x_lock = threading.Lock()    # A lock for synchronizing access to x
 
 COUNT = 1000000
