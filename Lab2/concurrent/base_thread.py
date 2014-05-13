@@ -1,7 +1,5 @@
 import time
 import threading
-import logging
-
 
 class CountdownThread(threading.Thread):
     def __init__(self,count):

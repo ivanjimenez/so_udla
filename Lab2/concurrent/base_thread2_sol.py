@@ -10,8 +10,10 @@ def imprime(cont, numhilo):
  
 
 t1 = threading.Thread(target=imprime, args=(5,1))
-t1.start()
 
 t2 = threading.Thread(target=imprime, args=(4,2))
 
-t2.start()
+
+t1.start(); t2.start()
+
+t1.join(); t2.join()

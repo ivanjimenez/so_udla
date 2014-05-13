@@ -111,8 +111,10 @@ $ bash script.sh
 \end{itemize}
 
 Un \textbf{shell } es un intérprete de órdenes, y un intérprete de órdenes es el programa que recibe lo que se escribe en la terminal y lo convierte en instrucciones para el sistema operativo. Básicamente permite a los usuarios comunicarse con el sistema operativo y darle órdenes. En otras palabras, el objetivo de cualquier intérprete de órdenes es ejecutar los programas que el usuario teclea en el prompt del mismo.\\
-El \textbf{prompt} es una indicación que muestra el intérprete para anunciar que espera una orden del usuario. Cuando el usuario escribe una orden, el intérprete la ejecuta. En dicha orden, puede haber programas internos o externos. Los programas internos son aquellos que vienen incorporados en el propio intérprete, como, por ejemplo, echo, cd, o kill. Mientras que los externos son programas separados, un ejemplo son todos los programas que residen en los directorios /bin, /usr/bin, etc., como ls, cat, o cp.\\
-En el mundo UNIX/Linux existen tres grandes familias de shells: sh, csh y ksh. Se diferencian entre sí, básicamente, en la sintaxis de sus órdenes y en la interacción con el usuario. En la siguiente tabla se muestran las tres grandes familias de shells, con el nombre correspondiente y posibles clones de cada uno:
+
+El \textbf{prompt} es una indicación que muestra el intérprete para anunciar que espera una orden del usuario. Cuando el usuario escribe una orden, el intérprete la ejecuta. En dicha orden, puede haber programas internos o externos. Los programas internos son aquellos que vienen incorporados en el propio intérprete, como, por ejemplo, echo, cd, o kill. Mientras que los externos son programas separados, un ejemplo son todos los programas que residen en los directorios /bin, /usr/bin, etc., como ls, cat, o cp.\\
+
+En el mundo UNIX/Linux existen tres grandes familias de shells: sh, csh y ksh. Se diferencian entre sí, básicamente, en la sintaxis de sus órdenes y en la interacción con el usuario. En la siguiente tabla se muestran las tres grandes familias de shells, con el nombre correspondiente y posibles clones de cada uno:
 
 \begin{table}[h]
     \begin{tabular}{|lll|}
@@ -177,7 +179,9 @@ El intérprete de órdenes seleccionado para realizar estas prácticas es el Bourne
 \section*{Funcionamiento del Shell}
 Supongamos que tenemos el siguiente guión Shell:
 \begin{lstlisting}[language=bash]
-#!/bin/bashcleardate
+#!/bin/bash
+clear
+date
 \end{lstlisting}
 
 al ejecutarse el proceso es el siguiente:
@@ -201,17 +205,21 @@ Cada shell tiene unas variables ligadas a él, a las que el usuario puede añadir 
 variable=valor
 \end{lstlisting}
 
-donde variable es el nombre de la misma. Es interesante destacar que no puede haber un espacio entre el nombre de la variable, el signo \= y el valor. Por otra parte, si se desea que el valor contenga espacios, es necesario utilizar comillas.Para obtener el valor de una variable hay que ante ponerle a su nombre el carácter \$. Por ejemplo, para visualizar el valor de una variable:
+donde variable es el nombre de la misma. Es interesante destacar que no puede haber un espacio entre el nombre de la variable, el signo \= y el valor. Por otra parte, si se desea que el valor contenga espacios, es necesario utilizar comillas.
+Para obtener el valor de una variable hay que ante ponerle a su nombre el carácter \$. Por ejemplo, para visualizar el valor de una variable:
 \begin{lstlisting}[language=bash]
 echo $variable
 \end{lstlisting}
 
 Un ejemplo del uso de las variables sería:
 \begin{lstlisting}[language=bash]
-$ mils="ls -l"   # Se crea una nueva variable $ mils		 # No hace nada, buscará el ejecutable 
+$ mils="ls -l"   # Se crea una nueva variable 
+$ mils		 # No hace nada, buscará el ejecutable 
 			 # mils, que no existe
-$ $mils		 # Ejecutará la orden "ls -l"$ echo $mils	# Muestra el contenido de la variable
-			# mils, i.e., "ls -l"\end{lstlisting}
+$ $mils		 # Ejecutará la orden "ls -l"
+$ echo $mils	# Muestra el contenido de la variable
+			# mils, i.e., "ls -l"
+\end{lstlisting}
 			
 Las variables se dividen en dos tipos:
 \begin{itemize}
@@ -228,7 +236,8 @@ $ export mils  # Convierte la variable mils en variable de entorno
 $ export var=valor 	#Crea la variable, le asigna "valor"
 \end{lstlisting}
 
-Con la orden unset se pueden restaurar o eliminar variables o funciones. Por ejemplo, la si-guiente instrucción elimina el valor de la variable mils:
+Con la orden unset se pueden restaurar o eliminar variables o funciones. Por ejemplo, la si-
+guiente instrucción elimina el valor de la variable mils:
 
 \begin{lstlisting}[language=bash]
 $ unset mils
@@ -263,7 +272,8 @@ Las siguientes variables son muy útiles al programar los guiones shells:
 \begin{itemize}
 \item \$?: esta variable contiene el valor de salida de la última orden ejecutada. Es útil para saber si una orden ha finalizado con éxito o ha tenido problemas. Un ’0’ indica que no ha habido errores, otro valor indica que sí ha habido errores.
 \item \$!: identificador de proceso de la última orden ejecutada en segundo plano.
-\item \$\$: el identificador de proceso (PID) de este shell, útil para incluirlo en nombres de ficherospara hacerlos únicos.
+\item \$\$: el identificador de proceso (PID) de este shell, útil para incluirlo en nombres de ficheros
+para hacerlos únicos.
 \item \$-: las opciones actuales suministradas para esta invocación del shell.
 \item \$*: todos los argumentos del shell comenzando por el \$1. Cuando la expansión ocurre entre comillas dobles, se expande a una sola palabra con el valor de cada parámetro separado por el primer carácter de la variable especial IFS. Esto es, “\$*” es equivalente a “\$1c\$2c. . . .”, donde c es el primer carácter del valor de la variable IFS. Si IFS no está definida, los parámetros se separan por espacios. Si IFS es la cadena vacía, los parámetros se juntan sin ningún separador
 \item \$@: igual que el anterior, excepto cuando va entrecomillado. Cuando la expansión ocurre dentro de comillas dobles, cada parámetro se expande a una palabra separada. Esto es, “\$\@” es equivalente a “\$1” “\$2”. . .
@@ -283,13 +293,19 @@ Como cualquier programa, un guión shell puede recibir parámetros en la línea de 
 A continuación se muestra un sencillo ejemplo de un guión shell que muestra los cuatro primeros parámetros recibidos:
 
 \begin{lstlisting}[language=bash]
-#!/bin/bashecho El nombre del programa es $0echo El primer parámetro recibido es $1echo El segundo parámetro recibido es $2
-echo El tercer parámetro recibido es $3echo El cuarto parámetro recibido es $4
+#!/bin/bash
+echo El nombre del programa es $0
+echo El primer parámetro recibido es $1
+echo El segundo parámetro recibido es $2
+echo El tercer parámetro recibido es $3
+echo El cuarto parámetro recibido es $4
 \end{lstlisting}
 
 La orden shift mueve todos los parámetros una posición a la izquierda, esto hace que el contenido del parámetro \$1 desaparezca, y sea reemplazado por el contenido de \$2, \$2 es reemplazado por \$3, etc.\\
-La variable \$\# contiene el número de parámetros que ha recibido el script. Como se indicó anteriormente \$* o \$\@ contienen todos los parámetros recibidos. La variable \$\@ es útil cuando queremos pasar a otros programas algunos de los parámetros que nos han pasado.\\
-Según todo esto, un ejemplo sencillo de guión shell que muestra el nombre del ejecutable, el número total de parámetros, todos los parámetros y los cuatro primeros parámetros es el siguiente:
+
+La variable \$\# contiene el número de parámetros que ha recibido el script. Como se indicó anteriormente \$* o \$\@ contienen todos los parámetros recibidos. La variable \$\@ es útil cuando queremos pasar a otros programas algunos de los parámetros que nos han pasado.\\
+
+Según todo esto, un ejemplo sencillo de guión shell que muestra el nombre del ejecutable, el número total de parámetros, todos los parámetros y los cuatro primeros parámetros es el siguiente:
 
 \begin{lstlisting}[language=bash]
 #!/bin/bash
@@ -322,27 +338,47 @@ El siguiente ejemplo muestra cómo podemos usar una variable, asignándole un valo
 
 \begin{lstlisting}[language=bash]
 
-$ echo El valor de var1 es ${var1}        # No está definida, no imprimirá nada$ echo El valor de la variable es ${var1=5}        # Al no estar definida, le asigna el valor 5
-$ echo Su nuevo valor es $var1        # Su valor es 5
+$ echo El valor de var1 es ${var1}
+        # No está definida, no imprimirá nada
+$ echo El valor de la variable es ${var1=5}
+        # Al no estar definida, le asigna el valor 5
+$ echo Su nuevo valor es $var1
+        # Su valor es 5
 \end{lstlisting}
 
 Pero si lo que queremos es usar un valor por defecto, en caso de que la variable no esté definida, pero sin inicializar la variable, se puede utilizar el siguiente ejemplo:
 
 
 \begin{lstlisting}[language=bash]
-$ echo El valor de var1 es ${var1}        # No está definida, no imprimirá nada$ echo El valor de la variable es ${var1-5}        # Al no estar definida, utiliza el valor 5$ echo El valor es $var1        # Su valor sigue siendo nulo, no se ha definido
+$ echo El valor de var1 es ${var1}
+        # No está definida, no imprimirá nada
+$ echo El valor de la variable es ${var1-5}
+        # Al no estar definida, utiliza el valor 5
+$ echo El valor es $var1
+        # Su valor sigue siendo nulo, no se ha definido
 \end{lstlisting}
 
 Por otro lado, si lo que queremos es usar el valor de la variable, y en caso de que no esté definida, imprimir un mensaje, podemos usar lo siguiente:
 
 \begin{lstlisting}[language=bash]
-$ echo El valor de var1 es ${var1}        # No está definida, no imprimirá nada$ echo El valor de la variable es ${var1? No está definida...}        # Al no estar definida, se muestra en pantalla el mensaje$ echo El valor es $var1        # Su valor sigue siendo nulo, no se ha definido
+$ echo El valor de var1 es ${var1}
+        # No está definida, no imprimirá nada
+$ echo El valor de la variable es ${var1? No está definida...}
+        # Al no estar definida, se muestra en pantalla el mensaje
+$ echo El valor es $var1
+        # Su valor sigue siendo nulo, no se ha definido
 \end{lstlisting}
 
 Este último ejemplo nos muestra cómo utilizar un valor por defecto si una variable está defini- da, o “nada”, sino está definida:
 
 \begin{lstlisting}[language=bash]
-$ var1=4  # Le asigna el valor 4$ echo El valor de var1 es ${var1}        # El valor mostado será 4$ echo El valor de la variable es ${var1+5}        # Al estar definida, se utiliza el valor 5$ echo El valor es $var1        # Su valor sigue siendo 4
+$ var1=4  # Le asigna el valor 4
+$ echo El valor de var1 es ${var1}
+        # El valor mostado será 4
+$ echo El valor de la variable es ${var1+5}
+        # Al estar definida, se utiliza el valor 5
+$ echo El valor es $var1
+        # Su valor sigue siendo 4
 \end{lstlisting}
 
 \subsubsection*{Arrays}
@@ -350,11 +386,14 @@ $ var1=4  # Le asigna el valor 4$ echo El valor de var1 es ${var1}        # El
 La shell permite que se trabaje con arrays (o listas) mono dimensionales. Un array es una colec- ción de elementos todos del mismo tipo, dotados de un nombre, y que se almacenan en posiciones contiguas de memoria. El primer elemento del array está numerado con el 0. No hay un tamaño límite para un array, y la asignación de valores se puede hacer de forma alterna. La sintaxis para declarar un array es la siguiente:
 
 \begin{lstlisting}[language=bash]
-nombre_array=(val1 val2 val3 ...)   #Crea e inicializa un arraynombre_array[x]=valor               #Asigna un valor al elemento x
+nombre_array=(val1 val2 val3 ...)   #Crea e inicializa un array
+nombre_array[x]=valor               #Asigna un valor al elemento x
 
 Para acceder a un elemento de la lista se utiliza la siguiente sintaxis:
 
-     ${nombre_array[x]}  # Para acceder al elemento x     ${nombre_array[*]}  # Para consultar todos los elementos     ${nombre_array[@]}  # Para consultar todos los elementos
+     ${nombre_array[x]}  # Para acceder al elemento x
+     ${nombre_array[*]}  # Para consultar todos los elementos
+     ${nombre_array[@]}  # Para consultar todos los elementos
 
 La diferencia entre user * y @ es que en 
 ${nombre_array[*]} # expande los elementos del array como 
@@ -364,7 +403,8 @@ ${nombre_array[*]} # expande los elementos del array como
 
 Si al referenciar a un array no se utiliza subíndice se considera 
 que se está referenciando a su primer elemento.
-Para conocer el tamaño en bytes del array se utiliza 
+
+Para conocer el tamaño en bytes del array se utiliza 
 
 ${nombre_array[x]} # donde x puede ser un subíndice, o bien los caracteres * ó @.
 
@@ -373,7 +413,8 @@ ${nombre_array[x]} # donde x puede ser un subíndice, o bien los caracteres * ó @
 Es interesante destacar la diferencia entre ejecutar las siguientes órdenes:
 
 \begin{lstlisting}[language=bash]
-$ aux=`ls`$ aux1(`ls`)
+$ aux=`ls`
+$ aux1(`ls`)
 \end{lstlisting}
 
 En el primer caso, la variable aux contiene la salida de ls como una secuencia de caracteres. Mien- tras que en el segundo caso, al haber utilizado los paréntesis, aux1 es un array, y cada entrada está formada por los nombres de fichero devueltos por la orden ls.\\
@@ -382,8 +423,16 @@ Supongamos que el directorio actual tenemos los siguientes ficheros: a.latex, b.
 
 \begin{lstlisting}[language=bash]
 
-$ ls    a.latex b.latex c.latex d.latex e.latex f.latex
-$ aux=‘ls‘$ echo $aux    a.latex b.latex c.latex d.latex e.latex f.latex$ echo ${aux[0]}    a.latex b.latex c.latex d.latex e.latex f.latex$ aux1=(‘ls‘)$ echo ${aux1[0]}a.latex
+$ ls
+    a.latex b.latex c.latex d.latex e.latex f.latex
+$ aux=‘ls‘
+$ echo $aux
+    a.latex b.latex c.latex d.latex e.latex f.latex
+$ echo ${aux[0]}
+    a.latex b.latex c.latex d.latex e.latex f.latex
+$ aux1=(‘ls‘)
+$ echo ${aux1[0]}
+a.latex
 
 \end{lstlisting}
 
@@ -407,18 +456,24 @@ hola
 Poner una cadena entre comillas invertidas, o bien entre paréntesis precedida de un signo \$, supone ejecutar su contenido como una orden y sustituir su salida, forzando al shell a ejecutar antes lo que va entre las comillas. La sintaxis es:
 
 \begin{lstlisting}[language=bash]
-‘orden‘ ó$(orden)
+‘orden‘ ó
+$(orden)
 \end{lstlisting}
 
 Este proceso se conoce como sustitución de órdenes. A continuación se muestran varios ejemplos:
 \begin{lstlisting}[language=bash]
-$ aux=‘ls -lai‘  # Ejecuta ls -lai y después lo asigna a aux$ echo $aux      # Muestra el contenido de aux$ fecha=$(date)  # Ejecuta date y almacena el valor en fecha$ echo $fecha    # Muestra el contenido de fecha
+$ aux=‘ls -lai‘  # Ejecuta ls -lai y después lo asigna a aux
+$ echo $aux      # Muestra el contenido de aux
+$ fecha=$(date)  # Ejecuta date y almacena el valor en fecha
+$ echo $fecha    # Muestra el contenido de fecha
 \end{lstlisting}
 
 Hay que tener en cuenta que el shell antes de ejecutar una orden, trata el significado especial de los caracteres especiales y de entrecomillado, así como los de generación de nombres de fichero. Por ejemplo:
 
 \begin{lstlisting}[language=bash]
-$ var=‘ls -al‘  # Primero ejecuta y luego le asigna el valor$ echo $var     # Muestra el contenido de la variable$ echo ‘date‘   # Primero se ejecuta date y luego echo
+$ var=‘ls -al‘  # Primero ejecuta y luego le asigna el valor
+$ echo $var     # Muestra el contenido de la variable
+$ echo ‘date‘   # Primero se ejecuta date y luego echo
 \end{lstlisting}
 
 \section*{Estructuras de Control}
@@ -427,11 +482,22 @@ $ var=‘ls -al‘  # Primero ejecuta y luego le asigna el valor$ echo $var     # M
 En un guión shell se pueden introducir condiciones, de forma que determinadas órdenes sólo se ejecuten cuando se cumplan unas condiciones concretas. Para ello se utilizan las órdenes if y case, con la siguiente sintaxis:
 
 \begin{lstlisting}[language=bash]
-if  [ expresión ]      #(No tiene porque ser un test)then    órdenes a ejecutar si se cumple la condiciónelif  [expresión]then     órdenes a ejecutar si se cumple la condición              # (el bloque elif y sus órdenes son opcionales)else     órdenes a ejecutar en caso contrario             # (el bloque else y sus órdenes son opcionales)fi
+if  [ expresión ]      #(No tiene porque ser un test)
+then
+    órdenes a ejecutar si se cumple la condición
+elif  [expresión]
+then
+     órdenes a ejecutar si se cumple la condición
+              # (el bloque elif y sus órdenes son opcionales)
+else
+     órdenes a ejecutar en caso contrario
+             # (el bloque else y sus órdenes son opcionales)
+fi
 \end{lstlisting}
 
 
-La expresión a evaluar por if puede ser o un test o bien otras expresiones, como una lista de órdenes (usando su valor de retorno), una variable o una expresión aritmética, básicamente cualquier orden que devuelva un código en \$?.Un ejemplo del funcionamiento de la orden if es:
+La expresión a evaluar por if puede ser o un test o bien otras expresiones, como una lista de órdenes (usando su valor de retorno), una variable o una expresión aritmética, básicamente cualquier orden que devuelva un código en \$?.
+Un ejemplo del funcionamiento de la orden if es:
 
 \begin{lstlisting}[language=bash]
 
@@ -448,7 +514,16 @@ La sintaxis de la orden \emph{case} con un ejemplo:
 
 \begin{lstlisting}[language=bash]
 
-case $var in     v1)     ..     ..     ;;     v2|v3)  ..     ..     ;;     *)      ..     ;;esac
+case $var in
+     v1)     ..
+     ..
+     ;;
+     v2|v3)  ..
+     ..
+     ;;
+     *)      ..
+     ;;
+esac
 
 #!/bin/bash
 read var
@@ -473,12 +548,15 @@ También es posible ejecutar bloques de órdenes de forma iterativa dependiendo de
 \begin{lstlisting}[language=bash]
 
 
-while    [ expresión ]  # Mientras la expresión sea cierta ...do... 
+while    [ expresión ]  # Mientras la expresión sea cierta ...
+do
+... 
 done
 
 
 until    [ expresión ]  # Mientras la expresión sea falsa ...
-do... 
+do
+... 
 done
 \end{lstlisting}
 
@@ -487,20 +565,31 @@ done
 Con la orden for se ejecutan bloques de órdenes, permitiendo que en cada iteración una deter- minada variable tome un valor distinto. La sintaxis es la siguiente:
 
 \begin{lstlisting}[language=bash]
-for var in listado	..$var..	... 
+for var in lista
+do
+	..$var..
+	... 
 done
 
 Por ejemplo:
 
-for i in 10 30 70do             echo Mi número favorito es $i             # ($i valdría 10 en la primera iteración, 30 en             # la segunda y 70 en la tercera)done
+for i in 10 30 70
+do
+             echo Mi número favorito es $i
+             # ($i valdría 10 en la primera iteración, 30 en
+             # la segunda y 70 en la tercera)
+done
 \end{lstlisting}
 
 \subsection*{SELECT}
 La sintaxis de la orden select es:
 \begin{lstlisting}[language=bash]
-select name [ in word ] ;do	... 
+select name [ in word ] ;
+do
+	... 
 	list ; 
-	...done
+	...
+done
 \end{lstlisting}
 
 select genera una lista de items al expandir la lista “word”, presentando en la pantalla esta lista de items precedidos cada uno de un número. A continuación se presenta un prompt pidiendo que se introduzca una de las entradas. \\
@@ -508,12 +597,15 @@ select genera una lista de items al expandir la lista “word”, presentando en la 
 Y se lee de la entrada estándar la opción elegida. Si la respuesta dada es uno de los números de la lista presentada, entonces la variable “name” toma el valor de esa opción, y se ejecuta con ella la lista de órdenes indicada. \\
 
 Si la respuesta es vacía, se vuelve a presentar la lista, y si es EOF se finaliza. Además el número de opción seleccionada se almacena en la variable REPLY.\\
-La lista de órdenes se ejecuta después de cada selección, mientras no se termine, bien con break, bien con EOF. El valor de salida de select será igual a valor de la última orden ejecutada.\\
+
+La lista de órdenes se ejecuta después de cada selección, mientras no se termine, bien con break, bien con EOF. El valor de salida de select será igual a valor de la última orden ejecutada.\\
  
 Ejemplo de \textbf{select: }
 
 \begin{lstlisting}[language=bash]
-select respuesta in Directorio_Actual Salir;
+#!/bin/bash
+select respuesta in "Ver contenido directorio actual" \
+            "Salir"
         do
             echo Ha seleccionado la opción: $respuesta
             case $REPLY in
@@ -531,9 +623,197 @@ $ ./select1.sh
 
 \end{lstlisting}
 
+
+ \subsection*{BREAK y CONTINUE}
+Las órdenes break y continue sirven para interrumpir la ejecución secuencial del cuerpo del bucle.\\
+
+break transfiere el control a la orden que sigue a done, haciendo que el bucle termine antes de tiempo.\\
+
+continue transfiere el control a done, haciendo que se evalúe de nuevo la condición, prosiguiendo el bucle.\\
+
+En ambos casos, las órdenes del cuerpo del bucle siguientes a estas sentencias, no se ejecutan. Lo normal es que formen parte de una sentencia condicional, como if.\\
+
+Un par de ejemplos de su uso es:
+
+\begin{lstlisting}[language=bash]
+# Muestra todos los parámetros, si encuentra una "f" finaliza
+while [ $# -gt 0 ]
+do
+	if [ $1 = "f" ]
+      then
+		break 
+      fi
+      echo Parámetro: $1
+	shift 
+done
+
+# Muestra todos los parámetros, si encuentra una "f"
+# se lo salta y continúa el bucle
+while [ $# -gt 0 ]
+do
+         if [ $1 = "f" ]
+    	  then
+	  	shift
+		continue 
+	  fi
+         echo Parámetro: $1
+	  shift
+done
+\end{lstlisting}
+
+\subsection*{Órdenes internas de Bash}
+Una orden interna del shell es una orden que el intérprete implementa y que ejecuta sin llamar a programas externos. Por ejemplo, echo es una orden interna de bash y cuando se llama desde un script no se ejecuta el fichero /bin/echo. Algunos de las órdenes internas más utilizadas son:
+\begin{itemize}
+\item echo: envía una cadena a la salida estándar, normalmente la consola o una tubería. Por ejemplo:\\ 
+\textbf{echo El valor de la variable es \$auxvar}
+
+\item read: lee una cadena de la entrada estándar y la asigna a una variable, permitiendo obtener entrada de datos por teclado en la ejecución de un guión shell:
+
+\begin{lstlisting}[language=bash]
+echo -n "Introduzca un valor para var1: "
+read var1
+echo "var1 = $var1"
+\end{lstlisting}
+
+\item let arg [arg]: cada arg es una expresión aritmética a ser evaluada:
+\begin{lstlisting}[language=bash]
+$ b=11
+$ let a=$b+7
+$ echo $a
+
+$ let a=6+7
+$ echo El resultado de la suma es $a
+El resultado de la suma es: 13
+$ let b=7%5
+$ echo El resto de la división es: $b
+El resto de la división es: 2
+\end{lstlisting}
+
+\item Evaluación de expresiones:
+\begin{lstlisting}[language=bash]
+$ echo $((2**6))
+64
+$ echo El resultado de la suma es $((6+7))
+El resultado de la suma es: 13
+\end{lstlisting}
+\end{itemize}
+
+\subsection*{La orden test}
+\textbf{test} es una orden que permite evaluar si una expresión es verdadera o falsa. Los tests no sólo operan sobre los valores de las variables, también permiten conocer, por ejemplo, las propiedades de un fichero.\\
+
+Principalmente se usan en la estructura if/then/else/fi para determinar qué parte del script se va a ejecutar. Un if puede evaluar, además de un test, otras expresiones, como una lista de órdenes (usando su valor de retorno), una variable o una expresión aritmética, básicamente cualquier orden que devuelva un código en \$?.\\
+
+La sintaxis de test puede ser una de las dos que se muestran a continuación: \\
+
+\begin{lstlisting}[language=bash]
+test expresión
+[ expresión ]
+\end{lstlisting}
+\emph{Atención: }Los espacios en blanco entre la expresión y los corchetes son necesarios. La expresión puede incluir operadores de comparación como los siguientes:
+
+\begin{table}[H]
+    \begin{tabular}{|l|l|}
+    \hline
+    -eq & Igual a         \\ \hline
+    -ne & no igual a      \\ \hline
+    -lt & menor que       \\ \hline
+    -le & menor o igual a \\ \hline
+    -gt & mayor que       \\ \hline
+    -ge & mayor o igual   \\ \hline
+    \end{tabular}
+\end{table}
+
+Es importante destacar que en las comparaciones con números si utilizamos una variable y no está definida, saldrá un mensaje de error. El siguiente ejemplo, al no estar la variable “e” definida, mostrará un mensaje de error indicando que se ha encontrado un operador inesperado.
+
+\begin{lstlisting}[language=bash]
+if [ $e -eq 1 ]
+then
+    echo Vale 1
+else
+    echo No vale 1
+fi
+\end{lstlisting}
+Por el contrario, en el siguiente ejemplo, a la variable “e” se le asigna un valor si no está definida, por lo que sí funcionaría:
+
+\begin{lstlisting}[language=bash]
+if [ ${e=0} -eq 1 ]
+       then
+           echo Vale 1
+       else
+           echo No vale 1
+fi
+\end{lstlisting}
+
+\begin{itemize}
+\item Para caracteres alfabéticos o cadenas:
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=100mm]{test1}
+\caption{cadenas}
+\label{overflow}
+\end{figure}
+
+\item En expresión se pueden incluir operaciones con ficheros, entre otras:
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=100mm]{test2}
+\caption{ficheros}
+\label{overflow}
+\end{figure}
+\end{itemize}
 %%%%%%%%%%%%%%%%
 
+\subsubsection*{Ejemplos de uso}
+Uno de los usos más comunes de la variable \$\#, es validar el número de argumentos necesarios en un programa shell. Por ejemplo:
+
+\begin{lstlisting}[language=bash]
+ if test $# -ne 2
+        then
+             echo "se necesitan dos argumentos"
+             exit 
+fi
+\end{lstlisting}
+
+El siguiente ejemplo comprueba el valor del primer parámetro posicional. Si es un fichero (- f) se visualiza su contenido; sino, entonces se comprueba si es un directorio y si es así cambia al directorio y muestra su contenido. En otro caso, echo muestra un mensaje de error.
+
+\begin{lstlisting}[language=bash]
+if test -f "$1"       # ¿ es un fichero ?
+then
+             more $1
+elif test -d "$1"     # ¿ es un directorio ?
+then
+             (cd $1;ls -l|more)
+else                  # no es ni fichero ni directorio
+             echo "$1 no es fichero ni directorio"
+fi
+\end{lstlisting}
+
+\section*{Depuración}
+
+Una buena idea para depurar los programas es la opción -x en la primera línea:
+\begin{lstlisting}[language=bash]
+#!/bin/bash -x
+\end{lstlisting}
+
+Como consecuencia, durante la ejecución se va mostrando cada línea del guión después de sustituir las variables por su valor, pero antes de ejecutarla.\\
+
+Otra posibilidad es utilizar la opción -v que muestra cada línea como aparece en el script (tal como está en el fichero), antes de ejecutarla:
+
+\begin{lstlisting}[language=bash]
+#!/bin/bash -v
+\end{lstlisting}
+
+Otra opción es llamar al programa usando el ejecutable bash. Por ejemplo, si nuestro programa se llama prac1, se podría invocar como:
+
+\begin{lstlisting}[language=bash]
+$ bash -x prac1
+              ó
+$ bash -v prac1
+\end{lstlisting}
+
 \section*{Ejercicios}
+
 
 \begin{enumerate}
 
@@ -547,22 +827,31 @@ $ ./select1.sh
 
 \item script5.sh: haga un script que imprima un menú con 5 opciones que realice lo siguiente:
 
-1) Ver directorio actual \# lista el contenido del directorio actual\\2) Copiar ficheros  \# le dos variables (que son ficheros) y copia de uno a otro\\
-3) Editar ficheros  \# lee una variable (fichero) y abre el fichero con vi\\4) Imprimir fichero\\5) Salir del menú\\
+1) Ver directorio actual \# lista el contenido del directorio actual\\
+2) Copiar ficheros  \# le dos variables (que son ficheros) y copia de uno a otro\\
+3) Editar ficheros  \# lee una variable (fichero) y abre el fichero con vi\\
+4) Imprimir fichero\\
+5) Salir del menú\\
 
 Nota: Puedes hacerlo con select o con while.
 
 \item script6.sh: lee dos números del teclado e imprime su suma, (usando las órdenes read, printf y let).
 \item script7.sh: escribir un guión shell que, dado el “username” de un usuario, nos devuelva cuántas veces esa persona está conectada. (Usa: who, grep, wc).
 
-\item script8.sh: Escribir un guión shell llamado ldir que liste los directorios existentes en el directorio actual.
+\item script8.sh: Escribir un guión shell que liste los directorios existentes en el directorio actual.
 
-\item script9.sh: script que pida por teclado una lista de PIDs de proceso y que los elimine.
+\item script9.sh: script que pida por teclado un número PID de proceso y lo elimine.
+
+\item script10.sh: Escribir un guión shell llamado ver que para cada argumento que reciba realice una de las siguientes operaciones:
+\begin{itemize}
+\item si es un directorio ha de listar los ficheros que contiene,
+\item si es un fichero regular lo tiene que mostrar por pantalla,
+\item en otro caso, que indique que no es ni un fichero ni un directorio.
+
+\end{itemize}
 
 \end{enumerate}
 
-
- 
 
 \end{document}
 

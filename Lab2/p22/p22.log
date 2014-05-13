@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2014.3.4)  13 MAY 2014 16:59
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2014.3.4)  13 MAY 2014 19:13
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -340,7 +340,11 @@ Package: geometry 2010/09/12 v5.6 Page Geometry
 \c@example=\count124
 \c@remark=\count125
 
-(./p22.aux)
+(./p22.aux
+
+LaTeX Warning: Label `overflow' multiply defined.
+
+)
 \openout1 = `p22.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 94.
@@ -358,8 +362,7 @@ LaTeX Font Info:    ... okay on input line 94.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 94.
 LaTeX Font Info:    ... okay on input line 94.
 \c@lstlisting=\count126
-
-(/usr/local/texlive/2013basic/texmf-dist/tex/context/base/supp-pdf.mkii
+ (/usr/local/texlive/2013basic/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count127
 \scratchdimen=\dimen130
@@ -481,7 +484,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 146--147
 
  []
 
-<udla.png, id=4, 255.95625pt x 79.29625pt>
+<udla.png, id=8, 255.95625pt x 79.29625pt>
 File: udla.png Graphic file (type png)
  <use udla.png>
 Package pdftex.def Info: udla.png used on input line 147.
@@ -607,44 +610,126 @@ File: udla.png Graphic file (type png)
 Package pdftex.def Info: udla.png used on input line 609.
 (pdftex.def)             Requested size: 89.58601pt x 27.75409pt.
  [9]
-Underfull \hbox (badness 10000) in paragraph at lines 640--645
+Underfull \hbox (badness 10000) in paragraph at lines 628--629
 
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 660.
+
+Underfull \hbox (badness 10000) in paragraph at lines 630--631
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 632--633
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 634--635
+
+ []
+
 File: udla.png Graphic file (type png)
 <use udla.png>
-Package pdftex.def Info: udla.png used on input line 660.
+Package pdftex.def Info: udla.png used on input line 666.
 (pdftex.def)             Requested size: 89.58601pt x 27.75409pt.
  [10]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 660.
+Underfull \hbox (badness 10000) in paragraph at lines 702--703
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 704--705
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 706--707
+
+ []
+
+File: udla.png Graphic file (type png)
+<use udla.png>
+Package pdftex.def Info: udla.png used on input line 727.
+(pdftex.def)             Requested size: 89.58601pt x 27.75409pt.
+ [11] <test1.png, id=372, 874.26625pt x 347.2975pt>
+File: test1.png Graphic file (type png)
+
+<use test1.png>
+Package pdftex.def Info: test1.png used on input line 752.
+(pdftex.def)             Requested size: 284.52756pt x 113.02402pt.
+ <test2.png, id=373, 646.415pt x 241.90375pt>
+File: test2.png Graphic file (type png)
+ <use test2.png>
+Package pdftex.def Info: test2.png used on input line 760.
+(pdftex.def)             Requested size: 284.52756pt x 106.47488pt.
+File: udla.png Graphic file (type png)
+
+<use udla.png>
+Package pdftex.def Info: udla.png used on input line 779.
+(pdftex.def)             Requested size: 89.58601pt x 27.75409pt.
+ [12 <./test1.png> <./test2.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 799--800
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 830--835
+
+ []
+
+File: udla.png Graphic file (type png)
+<use udla.png>
+Package pdftex.def Info: udla.png used on input line 840.
+(pdftex.def)             Requested size: 89.58601pt x 27.75409pt.
+ [13]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 856.
+File: udla.png Graphic file (type png)
+ <use udla.png>
+Package pdftex.def Info: udla.png used on input line 856.
+(pdftex.def)             Requested size: 89.58601pt x 27.75409pt.
+ [14]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 856.
  (./p22.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 660.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 660.
-Package rerunfilecheck Info: File `p22.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 660.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 856.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 856.
+
+
+Package rerunfilecheck Warning: File `p22.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `p22.out':
+(rerunfilecheck)             Before: 81FD059DB0178801E8F59069F11A248A;48
+(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 856.
  ) 
 Here is how much of TeX's memory you used:
- 8805 strings out of 494536
- 123874 string characters out of 6167447
- 258186 words of memory out of 5000000
- 11671 multiletter control sequences out of 15000+600000
+ 8936 strings out of 494536
+ 125610 string characters out of 6167447
+ 258265 words of memory out of 5000000
+ 11700 multiletter control sequences out of 15000+600000
  21920 words of font info for 43 fonts, out of 8000000 for 9000
  319 hyphenation exceptions out of 8191
  36i,16n,51p,540b,1870s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2013basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx1
-0.pfb></usr/local/texlive/2013basic/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mbx12.pfb></usr/local/texlive/2013basic/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmmi10.pfb></usr/local/texlive/2013basic/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmr10.pfb></usr/local/texlive/2013basic/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmsl10.pfb></usr/local/texlive/2013basic/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2013basic/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmti10.pfb>
-Output written on p22.pdf (10 pages, 143033 bytes).
+pdfTeX warning (dest): name{section.1} has been referenced but does not exist
+, replaced by a fixed one
+
+</usr/local/texlive/2013basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.
+pfb></usr/local/texlive/2013basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmb
+x12.pfb></usr/local/texlive/2013basic/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmmi10.pfb></usr/local/texlive/2013basic/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmr10.pfb></usr/local/texlive/2013basic/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmsl10.pfb></usr/local/texlive/2013basic/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmsy10.pfb></usr/local/texlive/2013basic/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmti10.pfb>
+Output written on p22.pdf (14 pages, 224017 bytes).
 PDF statistics:
- 404 PDF objects out of 1000 (max. 8388607)
- 380 compressed objects within 4 object streams
- 276 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 545 PDF objects out of 1000 (max. 8388607)
+ 513 compressed objects within 6 object streams
+ 376 named destinations out of 1000 (max. 500000)
+ 24 words of extra memory for PDF output out of 10000 (max. 10000000)
 

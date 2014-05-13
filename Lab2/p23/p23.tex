@@ -54,6 +54,7 @@
 
 % Use fancyhdr to define our own headers
 \usepackage{fancyhdr}
+%\usepackage{python}
 \setlength{\headheight}{25pt} % Keeps LaTeX happy, takes care of some warnings
 \pagestyle{fancy}
 
@@ -91,19 +92,111 @@
 
 % Begin the actual typesetting, by starting the "document" environment
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{color}
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{ %
+  backgroundcolor=\color{white},   % choose the background color
+  basicstyle=\footnotesize,        % size of fonts used for the code
+  breaklines=true,                 % automatic line breaking only at whitespace
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  keywordstyle=\color{blue},       % keyword style
+  stringstyle=\color{mymauve},     % string literal style
+}
+
+
 \begin{document}
-\section*{Introducción:}
 
 
 \section*{Ejercicios}
 
+
 \begin{enumerate}
 
-\item Haz un script que se llame sca.sh que imprima "Cuál es tu nombre", se introduzca una variable por teclado, y luego imprima "Mi nombre es <tu\_nombre>" y la fecha actual del sistema.
+\item Tenemos el siguiente programa fork\_ping.py
 
+\begin{lstlisting}[language=python]
+import os
+import sys
 
+child_pid = os.fork()
+if child_pid == 0:
+	# child process
+	os.system('ping -c 20 www.google.com > /ping.out')
+	sys.exit(0)
+
+print "En el padre, el pid del hijo es %d" % child_pid
+pid, status = os.waitpid(child_pid, 0)
+print "esperando volver, pid = %d, estado = %d" % (pid, status)
+\end{lstlisting}
+
+\begin{itemize}
+\item Ejecútalo e intenta comprender qué es lo que realiza.
+\item Haz un programa, fork\_ps.py, tomando como muestra este mismo, en el que el padre realice un ps -Af y exporte su salida a un fichero procesos.txt en el home de tu usuario. \\
+
+Mientras que el padre espera y, cuando ya ha realizado el hijo su tarea, cambia el nombre del archivo "procesos.txt" a "proc.txt".
+\end{itemize}
+
+\item Este programa, base\_thread.py, utiliza dos hilos para ejecución de la función "imprime".
+
+\begin{lstlisting}[language=python]
+import threading
+import time
+
+def imprime(cont, numhilo):
+    while cont > 0:
+        print "Hilo: %d Contando hacia atras %d " % (numhilo, cont)
+        cont -= 1
+        time.sleep(5)
+ 
+t1 = threading.Thread(target=imprime, args=(5,1))
+t2 = threading.Thread(target=imprime, args=(4,2))
+
+t1.start(); t2.start()
+
+t1.join(); t2.join()
+\end{lstlisting}
+
+\begin{itemize}
+\item Ejecuta y comprende el programa.
+\item Modifica el código para que se ejecuten 4 hilos con contadores: 10, 4, 3, 7.
+
+\end{itemize}
+
+\item En el siguiente programa, shared\_value.py, se utiliza la variable x como global y hay dos hilos que la utilizan:
+
+\begin{lstlisting}[language=python]
+import time
+import logging
+
+x = 0           # x Compartido
+def foo():
+    global x
+    for i in xrange(100000000): x += 1
+
+def bar():
+    global x
+    for i in xrange(100000000): x -= 1
+
+t1 = threading.Thread(target=foo)
+t2 = threading.Thread(target=bar)
+t1.start(); t2.start()
+t1.join(); t2.join()   # Espera a que se completen
+print x                # El resultado esperado es 0
+\end{lstlisting}
+
+\begin{itemize}
+\item ¿Cuál es la salida? ¿Por qué?
+\item Modifica el programa para que el resultado sea 0.
+
+\end{itemize}
 
 \end{enumerate}
+
 
 
  
