@@ -2,7 +2,6 @@ import time
 import threading
 import logging
 
-logging.basicConfig(level=logging.DEBUG,format='(%(threadName)-10s) %(message)s',)
 
 class CountdownThread(threading.Thread):
     def __init__(self,count):
@@ -14,9 +13,4 @@ class CountdownThread(threading.Thread):
             self.count -= 1
             time.sleep(5)
         return
-    def countdown(count):
-        while count > 0:
-            print "Counting down", count
-            count -= 1
-            time.sleep(5)
-        return
+  
