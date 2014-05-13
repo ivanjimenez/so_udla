@@ -1,0 +1,203 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% assignment_template.tex
+% A template for assignments
+% https://github.com/mhyee/latex-examples/
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% LaTeX Preamble
+% Load packages and set options as needed
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Set the document class to "article"
+% Pass it "letterpaper" option
+\documentclass[letterpaper]{article}
+
+% We don't need the special font encodings, but still
+% good practice to include these. See:
+%
+% http://tex.stackexchange.com/questions/664/why-should-i-use-usepackaget1fontenc
+% http://dsanta.users.ch/resources/type1.html
+\usepackage[T1]{fontenc}
+\usepackage{ae,aecompl}
+\usepackage{listings}
+\usepackage{fancyhdr} 
+\usepackage{float} 
+\usepackage{graphicx}
+\restylefloat{figure} 
+\usepackage{hyperref}
+
+
+\usepackage[applemac]{inputenc}
+% Packages for the math proof in this example
+\usepackage{amsmath}
+\usepackage{amsthm}
+
+% Set the margins
+\newcommand{\margin}{2cm}
+\usepackage[top=\margin,right=\margin,left=\margin,bottom=\margin]{geometry}
+
+% For definitions
+% Theorem Styles
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+% Definition Styles
+\theoremstyle{definition}
+\newtheorem{definición}{Definición}[section]
+\newtheorem{example}{Example}[section]
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+
+
+% Use fancyhdr to define our own headers
+\usepackage{fancyhdr}
+\setlength{\headheight}{25pt} % Keeps LaTeX happy, takes care of some warnings
+\pagestyle{fancy}
+
+% Definitions to fill the header with
+% EDIT THESE FIELDS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\course}{  Sistemas Operativos \\ ACI 343}
+\newcommand{\assignment}{Práctica 2.2: Shell Script Básico}
+\newcommand{\id}{RUT:}
+\newcommand{\name}{Nombre:}
+\renewcommand{\date}{ \today}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Now define the header. Make the text bold.
+% We'll get something like:
+%
+% 123456789             LaTeX 101
+% J. Random Student   Assignment N      Today's Date
+% --------------------------------------------------
+%
+% This layout is pretty simple, and should be enough for an assignment
+% If you want more, you can consult the documentation
+% http://www.ctan.org/tex-archive/macros/latex/contrib/fancyhdr/fancyhdr.pdf
+\lhead{\textbf{\id\\ \name}}
+\chead{\textbf{\course\\ \assignment}}
+\rhead{\textbf{\includegraphics[scale=0.35]{udla} \\ \date}}
+
+% Here is an example for customising the numbering
+% It changes the first level of numbering to bolded (a), (b), (c), etc
+\renewcommand{\theenumi}{\textbf{(\alph{enumi})}}
+\renewcommand{\labelenumi}{\theenumi}
+% Other options to play with are to change \theenumii, \labelenumii, and enumii for the second level of nesting,
+% and so on to \theenumiv, \labelenumiv, and enumiv for the fourth level of nesting.
+% The possible formats are \arabic (1, 2...), \alph (a, b...), \Alph (A, B...), \roman (i, ii...), and \Roman (I, II...)
+
+% Begin the actual typesetting, by starting the "document" environment
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\section*{Introducción:}
+Editores: vi, vim, nano, (ya veremos los gráficos como gedit o sublime text).
+El Shell Profile:
+\begin{itemize}
+\item Cuando iniciamos el shell se ejecutan: /etc/profile, $\sim$/.profile (a veces hay un $\sim$/.bash\_profile) y el $\sim$/.bashrc, por este orden (en algunas distribuciones cambian).
+\item Fíjese que el "." denota que el archivo es oculto (visualizarlos con ls -la).
+\item $\sim$ es equivalente a \$HOME
+
+\end{itemize}
+
+Un \textbf{shell } es un intérprete de órdenes, y un intérprete de órdenes es el programa que recibe lo que se escribe en la terminal y lo convierte en instrucciones para el sistema operativo. Básicamente permite a los usuarios comunicarse con el sistema operativo y darle órdenes. En otras palabras, el objetivo de cualquier intérprete de órdenes es ejecutar los programas que el usuario teclea en el prompt del mismo.\\
+El \textbf{prompt} es una indicación que muestra el intérprete para anunciar que espera una orden del usuario. Cuando el usuario escribe una orden, el intérprete la ejecuta. En dicha orden, puede haber programas internos o externos. Los programas internos son aquellos que vienen incorporados en el propio intérprete, como, por ejemplo, echo, cd, o kill. Mientras que los externos son programas separados, un ejemplo son todos los programas que residen en los directorios /bin, /usr/bin, etc., como ls, cat, o cp.\\
+En el mundo UNIX/Linux existen tres grandes familias de shells: sh, csh y ksh. Se diferencian entre sí, básicamente, en la sintaxis de sus órdenes y en la interacción con el usuario. En la siguiente tabla se muestran las tres grandes familias de shells, con el nombre correspondiente y posibles clones de cada uno:
+
+\begin{table}[h]
+    \begin{tabular}{|lll|}
+    \hline
+    \textbf{Tipo de Shell}                 & \textbf{Shell Estándar} & \textbf{Clones libres}    \\
+     		 	 	AT\&T Bourne shell     & sh             & ash, bash, bash2 \\
+     		 	 	Berkeley “C” shell     & csh            & tcsh             \\
+     		 	 	AT\&T Korn shell       & ksh            & pdksh, zsh       \\
+    Otros                         & -              & esh, gush, nwsh  \\ \hline
+    \end{tabular}
+\end{table}
+
+Por defecto, cada usuario tiene asignado un shell, establecido en el momento de creación de su cuenta, y que se guarda en el fichero /etc/passwd. Puedes hacer (cat /etc/passwd para verlo). \\
+
+El shell asignado a un usuario se puede cambiar de dos maneras: editando manualmente dicho fichero (que tiene que ser realizado por el administrador del sistema), o bien con el programa chsh (que lo puede ejecutar el propio usuario). Los shells están en el directorio /bin. Por ejemplo, para hacer que el shell por defecto sea /bin/bash se ejecutaría:
+\begin{lstlisting}[language=bash]
+$ chsh -s /bin/bash
+\end{lstlisting}
+
+Una de las principales características del shell es que se puede programar usando ficheros de texto que contienen órdenes que interpretará la ejecución de los mismos. Estos ficheros de texto se llaman: \textbf{scripts, shell scripts o guiones shell}. \\
+
+Una vez creados, estos shell scripts pueden ser ejecutados tantas veces como se desee, realizando las operaciones que se programaron. El shell ofrece construcciones y facilidades para hacer más sencilla su programación. La programación shell en Unix/Linux es equivalente a los archivos .BAT en Windows/MS-DOS, con la diferencia que en Unix/Linux son mucho más potentes.\\
+
+
+\begin{definición}
+  Es un fichero de texto ejecutable que contiene órdenes ejecutables por el shell.
+\end{definición}
+
+Un guión shell puede incluir \textbf{comentarios}, para ello se utiliza el carácter \textbf{\#} al inicio del texto que forma el comentario.\\
+
+En un guión shell se puede indicar el tipo de shell con el que se debe de interpretar o ejecutar, indicando en la primera línea del mismo lo siguiente:
+\begin{lstlisting}[language=bash]
+#!/bin/bash
+\end{lstlisting}
+
+Aunque en este caso, el carácter \# del principio no es un comentario al seguirle el signo !. Aquí, el programa que preprocesa el script, selecciona el /bin/bash por esta primera línea.\\
+
+La programación de shell es una de las herramientas más funcionales por los administradores y usuario de Unix/Linux, ya que permite automatizar tareas complejas, órdenes repetitivas y ejecutarlas con una sola llamada al script, o hacerlo automáticamente a horas escogidas sin intervención de personas. A continuación se muestran una serie de ejemplos de distintas tareas que se suelen automatizar con scripts:
+\begin{itemize}
+\item Tareas administrativas: algunas partes de los sistemas UNIX son guiones shell. Para poder entenderlos y modificarlos es necesario tener alguna noción sobre la programación de scripts.
+\item Tareas tediosas que sólo se van a ejecutar una o dos veces, no importa el rendimiento del programa resultante pero sí conviene que su programación sea rápida.
+\item Hacer que varios programas funcionen como un conjunto de forma sencilla.
+\item Pueden ser un buen método para desarrollar prototipos de aplicaciones más complejas que posteriormente se implementarán en lenguajes más potentes.
+
+\end{itemize}
+
+Conocer a fondo el shell aumenta tremendamente la rapidez y productividad a la hora de utilizarlo, incluso sin hacer uso de guiones shell. \\
+
+Los guiones shells pueden utilizar un sin número de herramientas como:
+
+\begin{itemize}
+\item Los guiones shells pueden utilizar un sin número de herramientas como: top, ps, grep, etc.
+\item Funciones internas del shell, por ejemplo echo, let, etc.
+\item Lenguaje de programación del shell, por ejemplo if /then/else/fi, etc
+\item Programas y/o lenguajes de procesamiento en línea, por ejemplo awk, sed, Perl.
+\item Programas propios del usuario escritos en cualquier lenguaje.
+\end{itemize}
+Si un guión shell se queda pequeño para lo que queremos hacer, existen otros lenguajes interpretados mucho más potentes como Python o Perl. \\
+
+El intérprete de órdenes seleccionado para realizar estas prácticas es el Bourne Again Shell, cuyo ejecutable es /bin/bash. El resto del contenido de este documento está centrado en este intérprete de órdenes.
+
+\section*{Funcionamiento del Shell}
+Supongamos que tenemos el siguiente guión Shell:
+\begin{lstlisting}[language=bash]
+#!/bin/bashcleardate
+\end{lstlisting}
+
+al ejecutarse el proceso es el siguiente:
+
+\begin{description}
+\item[1] El shell /bin/bash hacer un fork.
+\item[2] El proceso padre espera mientras no termina el nuevo hijo.
+\item[3] El proceso hijo hace un fork y un exec para ejecutar la orden clear, a continuación ejecuta un wait para esperar a que termine la ejecución de clear.
+\item[4] Una vez que ha terminado la orden clear, el proceso hijo repite los mismos pasos pero esta vez ejecutando la orden date.
+\item[5] Si quedasen órdenes por ejecutar se seguiría el mismo procedimiento.
+\item[5] Cuando finaliza el proceso hijo, hace que el padre se despierte.
+
+\end{description}
+
+\section*{Variables}
+
+\section*{Ejercicios}
+
+\begin{enumerate}
+
+\item Haz un script que se llame sca.sh que imprima "Cuál es tu nombre", se introduzca una variable por teclado, y luego imprima "Mi nombre es <tu\_nombre>" y la fecha actual del sistema.
+
+
+
+\end{enumerate}
+
+
+ 
+
+\end{document}
+
