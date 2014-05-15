@@ -1,0 +1,16 @@
+Hola, este es un mensaje del administrador del VPS, he
+recibido un mensaje de parte del servidor diciendo que
+desde este usuario: "vegas" se ha estado ejecutando 
+codigos maliciosos. Tenga en cuenta por favor que este 
+es un servidor virtual basico y el unico proposito es
+para poder ser usado en clases. Ruego por favor tener
+cuidado de los programas que ejecute en el servidor y
+tenga cuidado en no sobrecargar el VPS. Ya recibi una
+advertencia y en la proxima ocacion habra suspension 
+de este servidor y no podremos seguir utilizandolo.
+
+Muchas gracias por su comprension.
+
+Atte.
+Lisandro Curin Pinto
+
