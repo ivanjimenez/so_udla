@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2014.3.4)  13 MAY 2014 19:13
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2014.3.4)  15 MAY 2014 12:45
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -455,39 +455,34 @@ File: lstlang1.sty 2004/09/05 1.3 listings language file
 (/usr/local/texlive/2013basic/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2004/09/05 1.3 listings language file
 )
-Underfull \hbox (badness 10000) in paragraph at lines 113--114
+Underfull \hbox (badness 10000) in paragraph at lines 116--117
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 115--116
+Underfull \hbox (badness 10000) in paragraph at lines 118--119
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 130--131
+Underfull \hbox (badness 10000) in paragraph at lines 133--134
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 137--138
+Underfull \hbox (badness 10000) in paragraph at lines 140--141
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 139--140
+Underfull \hbox (badness 10000) in paragraph at lines 142--143
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 146--147
-
- []
-
-<udla.png, id=8, 255.95625pt x 79.29625pt>
+<udla.png, id=4, 255.95625pt x 79.29625pt>
 File: udla.png Graphic file (type png)
  <use udla.png>
-Package pdftex.def Info: udla.png used on input line 147.
+Package pdftex.def Info: udla.png used on input line 143.
 (pdftex.def)             Requested size: 89.58601pt x 27.75409pt.
 
 
@@ -499,152 +494,157 @@ Package Fancyhdr Warning: \headheight is too small (25.0pt):
 [1{/usr/local/texlive/2013basic/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
  <./udla.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 153--154
+Underfull \hbox (badness 10000) in paragraph at lines 149--150
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 164--165
+Underfull \hbox (badness 10000) in paragraph at lines 156--157
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 175--176
+Underfull \hbox (badness 10000) in paragraph at lines 167--168
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 178--179
 
  []
 
 File: udla.png Graphic file (type png)
 <use udla.png>
-Package pdftex.def Info: udla.png used on input line 194.
+Package pdftex.def Info: udla.png used on input line 186.
 (pdftex.def)             Requested size: 89.58601pt x 27.75409pt.
  [2]
 File: udla.png Graphic file (type png)
  <use udla.png>
-Package pdftex.def Info: udla.png used on input line 261.
+Package pdftex.def Info: udla.png used on input line 253.
 (pdftex.def)             Requested size: 89.58601pt x 27.75409pt.
  [3]
-Underfull \hbox (badness 10000) in paragraph at lines 283--285
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 304--305
+Underfull \hbox (badness 10000) in paragraph at lines 286--288
 
  []
 
 File: udla.png Graphic file (type png)
 <use udla.png>
-Package pdftex.def Info: udla.png used on input line 306.
+Package pdftex.def Info: udla.png used on input line 302.
 (pdftex.def)             Requested size: 89.58601pt x 27.75409pt.
  [4]
-Underfull \hbox (badness 10000) in paragraph at lines 306--307
+Underfull \hbox (badness 10000) in paragraph at lines 307--308
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 337--338
+Underfull \hbox (badness 10000) in paragraph at lines 309--310
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 340--341
 
  []
 
 File: udla.png Graphic file (type png)
 <use udla.png>
-Package pdftex.def Info: udla.png used on input line 365.
+Package pdftex.def Info: udla.png used on input line 357.
 (pdftex.def)             Requested size: 89.58601pt x 27.75409pt.
  [5]
-Overfull \hbox (33.52144pt too wide) in paragraph at lines 401--402
+Overfull \hbox (33.52144pt too wide) in paragraph at lines 404--405
 [][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 LaTeX Font Info:    Font shape `OMS/aer/m/it' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 409.
-
-Underfull \hbox (badness 10000) in paragraph at lines 420--421
-
- []
-
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 412.
 File: udla.png Graphic file (type png)
 <use udla.png>
-Package pdftex.def Info: udla.png used on input line 426.
+Package pdftex.def Info: udla.png used on input line 420.
 (pdftex.def)             Requested size: 89.58601pt x 27.75409pt.
  [6]
-Underfull \hbox (badness 10000) in paragraph at lines 441--442
+Underfull \hbox (badness 10000) in paragraph at lines 423--424
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 443--444
+Underfull \hbox (badness 10000) in paragraph at lines 444--445
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 446--447
 
  []
 
 File: udla.png Graphic file (type png)
 <use udla.png>
-Package pdftex.def Info: udla.png used on input line 487.
+Package pdftex.def Info: udla.png used on input line 480.
 (pdftex.def)             Requested size: 89.58601pt x 27.75409pt.
  [7]
 File: udla.png Graphic file (type png)
  <use udla.png>
-Package pdftex.def Info: udla.png used on input line 552.
+Package pdftex.def Info: udla.png used on input line 542.
 (pdftex.def)             Requested size: 89.58601pt x 27.75409pt.
  [8]
-Underfull \hbox (badness 10000) in paragraph at lines 595--596
+Underfull \hbox (badness 10000) in paragraph at lines 598--599
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 597--598
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 599--600
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 601--602
+Underfull \hbox (badness 10000) in paragraph at lines 600--601
 
  []
 
 File: udla.png Graphic file (type png)
 <use udla.png>
-Package pdftex.def Info: udla.png used on input line 609.
+Package pdftex.def Info: udla.png used on input line 602.
 (pdftex.def)             Requested size: 89.58601pt x 27.75409pt.
  [9]
-Underfull \hbox (badness 10000) in paragraph at lines 628--629
+Underfull \hbox (badness 10000) in paragraph at lines 602--603
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 630--631
+Underfull \hbox (badness 10000) in paragraph at lines 604--605
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 632--633
+Underfull \hbox (badness 10000) in paragraph at lines 631--632
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 634--635
+Underfull \hbox (badness 10000) in paragraph at lines 633--634
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 635--636
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 637--638
 
  []
 
 File: udla.png Graphic file (type png)
 <use udla.png>
-Package pdftex.def Info: udla.png used on input line 666.
+Package pdftex.def Info: udla.png used on input line 659.
 (pdftex.def)             Requested size: 89.58601pt x 27.75409pt.
  [10]
-Underfull \hbox (badness 10000) in paragraph at lines 702--703
+Underfull \hbox (badness 10000) in paragraph at lines 705--706
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 704--705
+Underfull \hbox (badness 10000) in paragraph at lines 707--708
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 706--707
+Underfull \hbox (badness 10000) in paragraph at lines 709--710
 
  []
 
@@ -652,84 +652,74 @@ File: udla.png Graphic file (type png)
 <use udla.png>
 Package pdftex.def Info: udla.png used on input line 727.
 (pdftex.def)             Requested size: 89.58601pt x 27.75409pt.
- [11] <test1.png, id=372, 874.26625pt x 347.2975pt>
+ [11] <test1.png, id=370, 874.26625pt x 347.2975pt>
 File: test1.png Graphic file (type png)
 
 <use test1.png>
-Package pdftex.def Info: test1.png used on input line 752.
+Package pdftex.def Info: test1.png used on input line 755.
 (pdftex.def)             Requested size: 284.52756pt x 113.02402pt.
- <test2.png, id=373, 646.415pt x 241.90375pt>
+ <test2.png, id=371, 646.415pt x 241.90375pt>
 File: test2.png Graphic file (type png)
  <use test2.png>
-Package pdftex.def Info: test2.png used on input line 760.
+Package pdftex.def Info: test2.png used on input line 763.
 (pdftex.def)             Requested size: 284.52756pt x 106.47488pt.
 File: udla.png Graphic file (type png)
 
 <use udla.png>
-Package pdftex.def Info: udla.png used on input line 779.
+Package pdftex.def Info: udla.png used on input line 783.
 (pdftex.def)             Requested size: 89.58601pt x 27.75409pt.
- [12 <./test1.png> <./test2.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 799--800
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 830--835
+ [12 <./test1.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 802--803
 
  []
 
 File: udla.png Graphic file (type png)
 <use udla.png>
-Package pdftex.def Info: udla.png used on input line 840.
+Package pdftex.def Info: udla.png used on input line 831.
 (pdftex.def)             Requested size: 89.58601pt x 27.75409pt.
- [13]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 856.
+ [13 <./test2.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 833--838
+
+ []
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 859.
 File: udla.png Graphic file (type png)
- <use udla.png>
-Package pdftex.def Info: udla.png used on input line 856.
+<use udla.png>
+Package pdftex.def Info: udla.png used on input line 859.
 (pdftex.def)             Requested size: 89.58601pt x 27.75409pt.
  [14]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 856.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 859.
  (./p22.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 856.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 856.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 859.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 859.
+Package rerunfilecheck Info: File `p22.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 
-
-Package rerunfilecheck Warning: File `p22.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `p22.out':
-(rerunfilecheck)             Before: 81FD059DB0178801E8F59069F11A248A;48
-(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 856.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 859.
  ) 
 Here is how much of TeX's memory you used:
- 8936 strings out of 494536
- 125610 string characters out of 6167447
- 258265 words of memory out of 5000000
- 11700 multiletter control sequences out of 15000+600000
+ 8935 strings out of 494536
+ 125616 string characters out of 6167447
+ 263759 words of memory out of 5000000
+ 11698 multiletter control sequences out of 15000+600000
  21920 words of font info for 43 fonts, out of 8000000 for 9000
  319 hyphenation exceptions out of 8191
- 36i,16n,51p,540b,1870s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{section.1} has been referenced but does not exist
-, replaced by a fixed one
-
-</usr/local/texlive/2013basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.
-pfb></usr/local/texlive/2013basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmb
-x12.pfb></usr/local/texlive/2013basic/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmmi10.pfb></usr/local/texlive/2013basic/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmr10.pfb></usr/local/texlive/2013basic/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmsl10.pfb></usr/local/texlive/2013basic/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmsy10.pfb></usr/local/texlive/2013basic/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmti10.pfb>
-Output written on p22.pdf (14 pages, 224017 bytes).
+ 36i,16n,51p,540b,1806s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2013basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx1
+0.pfb></usr/local/texlive/2013basic/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mbx12.pfb></usr/local/texlive/2013basic/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmmi10.pfb></usr/local/texlive/2013basic/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmr10.pfb></usr/local/texlive/2013basic/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmsl10.pfb></usr/local/texlive/2013basic/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2013basic/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmti10.pfb>
+Output written on p22.pdf (14 pages, 224692 bytes).
 PDF statistics:
- 545 PDF objects out of 1000 (max. 8388607)
- 513 compressed objects within 6 object streams
- 376 named destinations out of 1000 (max. 500000)
- 24 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 542 PDF objects out of 1000 (max. 8388607)
+ 510 compressed objects within 6 object streams
+ 377 named destinations out of 1000 (max. 500000)
+ 16 words of extra memory for PDF output out of 10000 (max. 10000000)
 

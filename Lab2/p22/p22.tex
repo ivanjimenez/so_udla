@@ -96,7 +96,10 @@
 Editores: vi, vim, nano, (ya veremos los gráficos como gedit o sublime text).
 El Shell Profile:
 \begin{itemize}
-\item Cuando iniciamos el shell se ejecutan: /etc/profile, $\sim$/.profile (a veces hay un $\sim$/.bash\_profile) y el $\sim$/.bashrc, por este orden (en algunas distribuciones cambian).
+\item Cuando se ejecuta un shell interactivo, se leen y ejecutan los comandos de los siguientes ficheros por orden: /etc/profile (si existe), el $\sim$/.bash\_profile, $\sim$/.bash\_login y el $\sim$/.profile, por este orden (en algunas distribuciones cambian).
+\item Cuando salimos del shell interactivo, se ejecutan el $\sim$/.bash\_logout y el /etc/bash.bash\_logout (si existe).
+\item Cuando se hace login (vía consola ssh, etc.) el .bash\_profile se ejeucta para configurar el shell antes de que salga el prompt. Pero si ejecutas un xterm dentro de Gnome o KDE, entonces es el .bashrc el que se ejecuta (aunque también lo hace cuando se ejeucta una instancia de /bin/bash).
+\item A efectos prácticos, configurar el .bash\_profile para configuraciones de nuestro terminal.
 \item Fíjese que el "." denota que el archivo es oculto (visualizarlos con ls -la).
 \item $\sim$ es equivalente a \$HOME
 \item Para ejecutar un script: 
@@ -140,7 +143,7 @@ Una vez creados, estos shell scripts pueden ser ejecutados tantas veces como se 
 
 
 \begin{definición}
-  Es un fichero de texto ejecutable que contiene órdenes ejecutables por el shell.
+  \textbf{Shell Script, guión shell: }Es un fichero de texto ejecutable que contiene órdenes ejecutables por el shell.
 \end{definición}
 
 Un guión shell puede incluir \textbf{comentarios}, para ello se utiliza el carácter \textbf{\#} al inicio del texto que forma el comentario.\\
@@ -213,17 +216,18 @@ echo $variable
 
 Un ejemplo del uso de las variables sería:
 \begin{lstlisting}[language=bash]
-$ mils="ls -l"   # Se crea una nueva variable 
+$ mils=`ls -l`   # Se crea una nueva variable 
 $ mils		 # No hace nada, buscará el ejecutable 
 			 # mils, que no existe
 $ $mils		 # Ejecutará la orden "ls -l"
 $ echo $mils	# Muestra el contenido de la variable
 			# mils, i.e., "ls -l"
+$ fecha=$(date) # También se pueden asignar órdenes de esta forma.
 \end{lstlisting}
 			
 Las variables se dividen en dos tipos:
 \begin{itemize}
-\item Variables locales: son aquellas que no son heredadas por los procesos hijos del shell actual (cuando se realiza un foro).
+\item Variables locales: son aquellas que no son heredadas por los procesos hijos del shell actual (cuando se realiza un fork).
 \item Variables de entorno: Estas variables son heredadas por los procesos hijos cuando se ejecuta un fork.
 \end{itemize}
 
@@ -234,16 +238,16 @@ $ set   # comando que visualiza todas las variables, locales y de entorno
 $ env  # comando que visualiza las variables de entorno
 $ export mils  # Convierte la variable mils en variable de entorno
 $ export var=valor 	#Crea la variable, le asigna "valor"
+$ unset variable # elimina la variable de entorno
 \end{lstlisting}
 
-Con la orden unset se pueden restaurar o eliminar variables o funciones. Por ejemplo, la si-
-guiente instrucción elimina el valor de la variable mils:
+Con la orden unset se pueden restaurar o eliminar variables o funciones. Por ejemplo, la siguiente instrucción elimina el valor de la variable mils:
 
 \begin{lstlisting}[language=bash]
 $ unset mils
 \end{lstlisting}
 
-Además de las variables que puede definir el programador, un shell tiene definidas, por defec- to, una serie de variables, las más importantes son:
+Además de las variables que puede definir el programador, un shell tiene definidas, por defecto, una serie de variables, las más importantes son:
 
 \begin{itemize}
 \item PS1: prompt primario. Por defecto: 
@@ -253,7 +257,7 @@ PS1=[\u@\h \W]\$
 
 \item PS1: prompt secundario.
 \item LOGNAME: nombre de usuario.
-\item GOME: directorio de trabajo del usuario actual. (cd \$HOME ó cd $\sim$).
+\item HOME: directorio de trabajo del usuario actual. (cd \$HOME ó cd $\sim$).
 \item PATH: rutas utilizadas para ejecutar órdenes o programas. El directorio actual no está incluido en la búsqueda por defecto (en MSDOS sí) y si se desea debe formar parte de la variable PATH. Por ejemplo:
 
 \begin{lstlisting}[language=bash]
@@ -264,7 +268,6 @@ $ PATH=$PATH:/usr/sbin:
 \item PWD: directorio activo.
 \item TERM: el tipo de la terminal actual.
 \item SHELL: shell actual.
-\item IFS: el Separador Interno de Campo que se emplea para la división de palabras tras la expan- sión y para dividir líneas en palabras con la orden interna read. El valor predeterminado es “<espacio><tab><nueva-línea>”.
 
 \end{itemize}
 
@@ -274,9 +277,9 @@ Las siguientes variables son muy útiles al programar los guiones shells:
 \item \$!: identificador de proceso de la última orden ejecutada en segundo plano.
 \item \$\$: el identificador de proceso (PID) de este shell, útil para incluirlo en nombres de ficheros
 para hacerlos únicos.
-\item \$-: las opciones actuales suministradas para esta invocación del shell.
-\item \$*: todos los argumentos del shell comenzando por el \$1. Cuando la expansión ocurre entre comillas dobles, se expande a una sola palabra con el valor de cada parámetro separado por el primer carácter de la variable especial IFS. Esto es, “\$*” es equivalente a “\$1c\$2c. . . .”, donde c es el primer carácter del valor de la variable IFS. Si IFS no está definida, los parámetros se separan por espacios. Si IFS es la cadena vacía, los parámetros se juntan sin ningún separador
-\item \$@: igual que el anterior, excepto cuando va entrecomillado. Cuando la expansión ocurre dentro de comillas dobles, cada parámetro se expande a una palabra separada. Esto es, “\$\@” es equivalente a “\$1” “\$2”. . .
+\item \$-: las opciones actuales suministradas para esta invocación del shell. (se pueden consultar mediante \textbf{ info bash --index-search=set})
+\item \$*: todos los argumentos del shell comenzando por el \$1. Esto es, “\$*” es equivalente a “\$1 \$2. . . .”, donde los parámetros se separan por espacios. 
+\item \$@: igual que el anterior.
 
 \end{itemize}
 \subsection*{Parámetros}
@@ -383,7 +386,7 @@ $ echo El valor es $var1
 
 \subsubsection*{Arrays}
 
-La shell permite que se trabaje con arrays (o listas) mono dimensionales. Un array es una colec- ción de elementos todos del mismo tipo, dotados de un nombre, y que se almacenan en posiciones contiguas de memoria. El primer elemento del array está numerado con el 0. No hay un tamaño límite para un array, y la asignación de valores se puede hacer de forma alterna. La sintaxis para declarar un array es la siguiente:
+La shell permite que se trabaje con arrays (o listas) mono dimensionales. Un array es una colección de elementos todos del mismo tipo, dotados de un nombre, y que se almacenan en posiciones contiguas de memoria. El primer elemento del array está numerado con el 0. No hay un tamaño límite para un array, y la asignación de valores se puede hacer de forma alterna. La sintaxis para declarar un array es la siguiente:
 
 \begin{lstlisting}[language=bash]
 nombre_array=(val1 val2 val3 ...)   #Crea e inicializa un array
@@ -819,7 +822,7 @@ $ bash -v prac1
 
 \item script1.sh que imprima "Cuál es tu nombre", se introduzca una variable por teclado, y luego imprima "Mi nombre es <tu\_nombre>" y la fecha actual del sistema.
 
-\item script2.sh: muestra su número PID y después llama a un programa llamado \textbf{num} a través de del punto (. num). Cuando num termina su ejecución, la orden (.) devuelve el control al programa que lo llamó, el cual muestra el mensaje.
+\item script2.sh: muestra su número PID y después llama a un programa llamado \textbf{num} a través de del punto (. num). Cuando num termina su ejecución, la orden (.) devuelve el control al programa que lo llamó, el cual muestra el mensaje. (Nota: el fichero num lleva un sólo \textbf{echo "Soy num"}).
 
 \item script3.sh que copie un fichero en otro, controlando que el numéro de argumentos sea exactamente dos y que ambos parámetros sean ficheros.
 
