@@ -1,0 +1,191 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% assignment_template.tex
+% A template for assignments
+% https://github.com/mhyee/latex-examples/
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% LaTeX Preamble
+% Load packages and set options as needed
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Set the document class to "article"
+% Pass it "letterpaper" option
+\documentclass[letterpaper]{article}
+
+% We don't need the special font encodings, but still
+% good practice to include these. See:
+%
+% http://tex.stackexchange.com/questions/664/why-should-i-use-usepackaget1fontenc
+% http://dsanta.users.ch/resources/type1.html
+\usepackage[T1]{fontenc}
+\usepackage{ae,aecompl}
+\usepackage{listings}
+\usepackage{fancyhdr} 
+\usepackage{float} 
+\usepackage{graphicx}
+\restylefloat{figure} 
+\usepackage{hyperref}
+
+
+\usepackage[applemac]{inputenc}
+% Packages for the math proof in this example
+\usepackage{amsmath}
+\usepackage{amsthm}
+
+% Set the margins
+\newcommand{\margin}{2cm}
+\usepackage[top=\margin,right=\margin,left=\margin,bottom=\margin]{geometry}
+
+% For definitions
+% Theorem Styles
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+% Definition Styles
+\theoremstyle{definition}
+\newtheorem{definición}{Definición}[section]
+\newtheorem{example}{Example}[section]
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+
+
+% Use fancyhdr to define our own headers
+\usepackage{fancyhdr}
+%\usepackage{python}
+\setlength{\headheight}{25pt} % Keeps LaTeX happy, takes care of some warnings
+\pagestyle{fancy}
+
+% Definitions to fill the header with
+% EDIT THESE FIELDS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\course}{  Sistemas Operativos \\ ACI 343}
+\newcommand{\assignment}{Práctica 3.1: Gráficas y Estadísticas de Memoria y CPU}
+\newcommand{\id}{RUT:}
+\newcommand{\name}{Nombre:}
+\renewcommand{\date}{ \today}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Now define the header. Make the text bold.
+% We'll get something like:
+%
+% 123456789             LaTeX 101
+% J. Random Student   Assignment N      Today's Date
+% --------------------------------------------------
+%
+% This layout is pretty simple, and should be enough for an assignment
+% If you want more, you can consult the documentation
+% http://www.ctan.org/tex-archive/macros/latex/contrib/fancyhdr/fancyhdr.pdf
+\lhead{\textbf{\id\\ \name}}
+\chead{\textbf{\course\\ \assignment}}
+\rhead{\textbf{\includegraphics[scale=0.35]{udla} \\ \date}}
+
+% Here is an example for customising the numbering
+% It changes the first level of numbering to bolded (a), (b), (c), etc
+\renewcommand{\theenumi}{\textbf{(\alph{enumi})}}
+\renewcommand{\labelenumi}{\theenumi}
+% Other options to play with are to change \theenumii, \labelenumii, and enumii for the second level of nesting,
+% and so on to \theenumiv, \labelenumiv, and enumiv for the fourth level of nesting.
+% The possible formats are \arabic (1, 2...), \alph (a, b...), \Alph (A, B...), \roman (i, ii...), and \Roman (I, II...)
+
+% Begin the actual typesetting, by starting the "document" environment
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{color}
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{ %
+  backgroundcolor=\color{white},   % choose the background color
+  basicstyle=\footnotesize,        % size of fonts used for the code
+  breaklines=true,                 % automatic line breaking only at whitespace
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  keywordstyle=\color{blue},       % keyword style
+  stringstyle=\color{mymauve},     % string literal style
+}
+
+
+\begin{document}
+
+
+\section*{Ejercicios}
+\subsection*{Materiales}
+\begin{itemize}
+\item Archivos que están en las carpetas del Lab3 y las manpages de los comandos.
+\item Comandos básicos.
+\item Shell script
+\item Gnuplot
+\item VPS CentOS (IP Púbica Estática).
+\item Ubuntu Server de Laboratorio (IP Dinámica).
+
+\subsection*{Entregables}
+
+\begin{itemize}
+\item Un documento explicativo de lo que se ha realizado.
+\item Adjuntar los ficheros que hayáis generado (dejarlos en el servidor también).
+
+\end{itemize}
+
+\end{itemize}
+
+
+\subsection*{Comando sar}
+Mediante el comando \textbf{sar}, ¿cuál es la orden/comando necesaria para visualizar la siguiente información 7 veces cada 2 segundos?
+
+\begin{lstlisting}[language=bash]
+$ sar [opciones] [intervalo] [contador]
+\end{lstlisting}
+
+\begin{enumerate}
+
+\item Estadísticas totales de utilización de CPU. Expórtalo a un fichero cpu\_stats.txt.
+\item Estadísticas de procesos creados.
+\item Estadísticas de tasas de transferencia y I/O.
+\item Estadísticas de paginación.
+\item Estadísticas de dispositivos de bloque.
+\item Estadísitcas de todas las interrupciones.
+\item Estadístiicas de CPU específicas (en nuestros servidores sólo hay una).
+\item Estadísitcas de utilización de espacio de swap y memoria.
+\item Estadísticas de swapping (no es lo mismo el espacio que hay de swap que las tasas de transferencia).
+\item Estadísticas de las interfaces de red.
+
+
+\end{enumerate}
+
+\subsection*{Comando vmstat}
+Mediante el comando vmstat ¿cuál es la orden/comando necesaria para visualizar la siguiente información 7 veces cada 2 segundos?
+
+\begin{lstlisting}[language=bash]
+$ vmstat [opciones] [intervalo] [contador]
+\end{lstlisting} 
+
+\begin{enumerate}
+\item Ejecuta el comando vmstat 7 veces cada 2 segundos y observa la información. ¿Cuánta memoria swapead libre y ocupada hay?
+\item Visualiza la memoria activa e inactiva.
+\item Visualiza 6 veces cada 1 segundo con timestamps. (Los \emph{timestamps} es una columna con la fecha y hora.)
+\item Visualiza la tabla de contadores de eventos y estadísticas de memoria.
+\item Visualiza las estadísticas de todos los discos.
+\item Visualiza 6 veces cada 1 segundo en Megabytes.
+
+\end{enumerate}
+
+\subsection*{Graficar estadísticas:}
+
+\begin{enumerate}
+\item Haz una gráfica de estadísticas de memoria virtual (10 valores, 1 segundo) de la carga de CPU por usuario. Identifica título, eje X y eje Y. Expórtala a un archivo mem\_user.png.
+\item Haz una gráfica de estadísticas de memoria virtual (10 valores, 1 segundo) del tiempo de espera de I/O. Identifica título, eje X y eje Y. Expórtala a un archivo mem\_io.png.
+\item Haz una gráfica de estadísticas de memoria virtual (10 valores, 1 segundo) de la carga de usuario. Identifica título, eje X y eje Y. Expórtala a un archivo mem\_userload.png.
+\item Haz una gráfica de la carga de sistema (6 valores, 1 segundo). Identifica título, eje X y eje Y. Expórtala a un archivo cpu\_systemload.png.
+
+\end{enumerate}
+
+\subsection*{OPCIONAL: Monitor de estadísticas:}
+
+Desarrolla un pequeño programa (en C, Python, Perl, Bash, o tu preferido) que se le introduzca el tiempo del intervalo y número de las estadísticas y genere un gráfico que se pueda consultar como si fuera en tiempo real.
+
+\end{document}
+
