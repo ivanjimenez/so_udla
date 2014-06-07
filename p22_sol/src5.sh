@@ -11,7 +11,6 @@ select opcion in "Ver directorio actual" \
             2)    echo "Introduzca [nom_fuente] [nom_destino]"
                   read x y
                   cp $x $y
-                  read x
                   ;;
             3)    echo "¿Nombre de fichero a editar?"
                   read x;
