@@ -1,0 +1,187 @@
+ORT BRAUDE COLLEGE OF ENGINEERING 
+Electronic and Electrical Engineering Department 
+Operating Systems 31261
+
+PROJECT 3: File System Exploration
+
+---------
+PROBLEM 1
+---------
+Write a function dir_size(directory) which computes the total size in bytes of all files in a
+given directory (recursively!).
+
+def dir_size(directory):
+    # write your algorithm here
+    # compute the total size of files inside
+    # the directory
+    return size
+
+Hints:
+* Explore the os module: http://docs.python.org/2/library/os.html
+* Use the following funtions:
+      os.listdir, os.path, os.sep, os.path.isfile, os.path.normpath, os.path.getsize
+* Make sure to skip files which you have no permission to access!
+  In Windows, directories of type "JUNCTION" can cause problem to os.listdir()
+  Use try/except mechanism to overcome this problem
+* Use recursion !
+* Try to avoid os.walk() or else it will become trivial ...
+
+---------
+PROBLEM 2
+---------
+
+Write a Python function dir_info(dircetory) which returns three values:
+  (1) Number of files inside the directory (recursively!)
+  (2) Number of dirctories inside the directory (recursively)
+
+def dir_info(dircetory):
+    # nfiles = how many files inside directory?
+    # ndirs  = how many sub directories inside directory?
+    return nfiles, ndirs
+
+---------
+PROBLEM 3
+---------
+Write a function find_string(s ,file) for finding all lines in file that contain the string s.
+You should report the line number and the line itself as in the following example:
+
+     file = "oliver_twist.txt"
+     find_string("Fagin", file)
+     =>
+        2616: 'Greenland. Is Fagin upstairs?'
+        2646: 'This is him, Fagin,' said Jack Dawkins;'my friend Oliver Twist.'
+        2723: Fagin! And why should they? It wouldn't have loosened the knot, or kept
+        2834: 'And what have you got, my dear?' said Fagin to Charley Bates.
+        2911: 'There, my dear,' said Fagin. 'That's a pleasant life, isn't it? They
+        3866: 'What'll Fagin say?' inquired the Dodger; taking advantage of the next
+        3929: Mr. Fagin looked so very much in earnest, that Charley Bates, who
+        . . .
+
+
+---------
+PROBLEM 4
+---------
+Write a function find_files(directory, pattern)
+For finding all files in dircetory (recursively) with names matching pattern.
+Examples:
+          find_files("C:/Windows", "*copy.exe")
+          =>
+            c:\Windows\System32\Robocopy.exe
+            c:\Windows\System32\xcopy.exe
+            c:\Windows\SysWOW64\Robocopy.exe
+            c:\Windows\SysWOW64\xcopy.exe
+            . . .
+
+Hints:
+* It is recommended that you learn how to work with the 'os.walk' function for traversing directory trees.
+  It is based on an advanced software technique called 'generator' available in Python and requires minimal
+  effort to get used to.
+
+* Learn about the fnmatch Python module:   http://docs.python.org/2/library/fnmatch.html
+  Here is a typical example you may need to use:
+
+      import fnmatch
+      file = "C:/Braude/oliver.txt"
+      if fnmatch.fnmatch(file, "*.txt"):
+          print "This is a text file:", file
+
+---------
+PROBLEM 5
+---------
+Writing new system programs with Python. In Windows these are also called "Batch Files".
+
+-------------------------------------------------
+WARNING: If you use Portable Python (disconkey) or if your Anaconda installation had problems,
+then itm might not work for you. So you can skip this problem until we do it for LINUX.
+Read more about it in:
+    http://effbot.org/pyfaq/how-do-i-run-a-python-program-under-windows.htm
+    http://effbot.org/pyfaq/how-do-i-make-python-scripts-executable.htm
+-------------------------------------------------
+
+System programs are executed from the command line and can also be executed by a mouse double-click.
+So you must start a DOS command window (use cmd.exe).
+The only new thing you need to learn is how to read command line arguments from the user.
+Here is a very simple example that accepts exactly 3 arguments,
+which you should use as a template for all your programs:
+
+    #!/usr/bin/env python
+    
+    import sys
+    
+    # You must pass 3 arguments here ...
+    print "Argument list:", sys.argv
+    print "Program Path:", sys.argv[0]
+    print "Argument 1:", sys.argv[1]
+    print "Argument 2:", sys.argv[2]
+    print "Argument 3:", sys.argv[3]
+
+The first line ("#!/usr/bin/env python") ensures that this file can also be run in Linux or Android systems.
+Save this program in a file test1.py, open a cmd.exe window and run this command from the command line:
+
+      C:\> test1.py
+
+(if your Python files are associated with PyScripter, then you may need to run: python.exe test1.py)
+
+(a) Write a Python system program find_files.py which accepts two arguments:
+       (1) directory path
+       (2) a file pattern 
+
+       C:\Users\Dudi> find_files.py c:\windows *xcopy.exe
+ 
+            c:\Windows\System32\Robocopy.exe
+            c:\Windows\System32\xcopy.exe
+            c:\Windows\SysWOW64\Robocopy.exe
+            c:\Windows\SysWOW64\xcopy.exe
+            . . .
+
+       C:\Users\Dudi> find_files.py . *.ppt*
+  
+            C:\Users\Dudi\Downloads\lecture1.pptx
+            C:\Users\Dudi\Downloads\Part_07.ppt
+            C:\Users\Dudi\Downloads\Lab_2.pptx
+            . . .
+
+NOTES:
+Another method for making your Python script executable is by renaming it to: find_files.cmd
+and add the following line at its top:
+
+   @setlocal enableextensions & python -x %~f0 %* & goto :EOF
+
+
+#########################################
+#   _   _  ____ _______ ______  _____   #
+#  | \ | |/ __ \__   __|  ____|/ ____|  #
+#  |  \| | |  | | | |  | |__  | (___    #
+#  | . ` | |  | | | |  |  __|  \___ \   #
+#  | |\  | |__| | | |  | |____ ____) |  #
+#  |_| \_|\____/  |_|  |______|_____/   #
+#                                       #
+#########################################
+
+* Before you start the project, read again the Python codeing style guide in:
+
+      http://brd4.braude.ac.il/~samyz/PYTHON/style_guide.shtml
+
+* Make sure to insert clear comments that explain what you do. Use consistent coding style.
+  Write short and clear functions (no longer than 16 lines).
+  Except for accuracy and code correctness, your code should also be readable, simple, short,
+  run fast, and efficient.
+  Bad function or variable names are against Python philosophy.
+  Very long lines or paragraphs are a clear indication of design problems.
+
+* Wait a few days before you print or copy this assignment. It may get updated several times.
+  Please read it carefully. You are encouraged and welcome to submit any errors or comments that you
+  may find suitable.
+  Send them to:
+                     samyz.ort.braude@gmail.com
+
+  Please ask any question that bothers you and report anything which is not completely clear.
+
+* Coding directives:
+      - You will find most of the Python functions you need in the 'os' module:
+               http://docs.python.org/2/library/os.html#module-os
+
+      - Read about os.mkdir, os.listdir, os.walk, and other similar functions in the 'os' module.
+
+
+
