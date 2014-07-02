@@ -1,0 +1,16 @@
+8
+
+dir
+0
+https://py4sa.googlecode.com/svn/trunk/code/package_management/code/egg-example/build/bdist.macosx-10.5-i386
+https://py4sa.googlecode.com/svn
+add
+
+
+
+
+
+
+
+svn:special svn:externals svn:needs-lock
+

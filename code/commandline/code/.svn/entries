@@ -1,0 +1,114 @@
+8
+
+dir
+0
+https://py4sa.googlecode.com/svn/trunk/code/commandline/code
+https://py4sa.googlecode.com/svn
+add
+
+
+
+
+
+
+
+svn:special svn:externals svn:needs-lock
+
+verbosity_levels_count.py
+file
+
+
+
+add
+
+true_false.py
+file
+
+
+
+add
+
+choices.py
+file
+
+
+
+add
+
+snmpdf_alter.py
+file
+
+
+
+add
+
+hello_config.ini
+file
+
+
+
+add
+
+multiple_option_args.py
+file
+
+
+
+add
+
+subprocess_dd.py
+file
+
+
+
+add
+
+
+
+
+
+has-props
+has-prop-mods
+
+snmpdf_wrap.py
+file
+
+
+
+add
+
+create_files.py
+file
+
+
+
+add
+
+hello_config_optparse.py
+file
+
+
+
+add
+
+simple_callback.py
+file
+
+
+
+add
+
+hello_world_optparse.py
+file
+
+
+
+add
+
+no_options.py
+file
+
+
+
+add
+

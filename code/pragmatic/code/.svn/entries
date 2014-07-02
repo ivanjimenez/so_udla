@@ -1,0 +1,100 @@
+8
+
+dir
+0
+https://py4sa.googlecode.com/svn/trunk/code/pragmatic/code
+https://py4sa.googlecode.com/svn
+add
+
+
+
+
+
+
+
+svn:special svn:externals svn:needs-lock
+
+apache_log_parser_regex.py
+file
+
+
+
+add
+
+apache_log_parser_split.py
+file
+
+
+
+add
+
+query_dns.py
+file
+
+
+
+add
+
+apache_log_parser_split.pyc
+file
+
+
+
+add
+
+
+
+
+
+has-props
+has-prop-mods
+
+summarize_logfiles_mem.py
+file
+
+
+
+add
+
+
+
+
+
+has-props
+has-prop-mods
+
+summarize_logfiles.py
+file
+
+
+
+add
+
+
+
+
+
+has-props
+has-prop-mods
+
+ftp_mirror.py
+file
+
+
+
+add
+
+apache_log_parser_regex_mem.py
+file
+
+
+
+add
+
+apache_log_parser_split_mem.py
+file
+
+
+
+add
+

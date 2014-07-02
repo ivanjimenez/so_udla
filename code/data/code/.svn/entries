@@ -1,0 +1,170 @@
+8
+
+dir
+0
+https://py4sa.googlecode.com/svn/trunk/code/data/code
+https://py4sa.googlecode.com/svn
+add
+
+
+
+
+
+
+
+svn:special svn:externals svn:needs-lock
+
+motivated-rsync.py
+file
+
+
+
+add
+
+sqlalchemy_metadata_cli.py
+file
+
+
+
+add
+
+enumarate_file_dir_path.py
+file
+
+
+
+add
+
+diskwalk_api.py
+file
+
+
+
+add
+
+delete.py
+file
+
+
+
+add
+
+checksum.py
+file
+
+
+
+add
+
+sqlalchemy_metadata.py
+file
+
+
+
+add
+
+diskwalk_api.pyc
+file
+
+
+
+add
+
+
+
+
+
+has-props
+has-prop-mods
+
+checksum.pyc
+file
+
+
+
+add
+
+
+
+
+
+has-props
+has-prop-mods
+
+pyrsync.py
+file
+
+
+
+add
+
+pyrsync-daemon.py
+file
+
+
+
+add
+
+index.pyc
+file
+
+
+
+add
+
+
+
+
+
+has-props
+has-prop-mods
+
+find_dupes.py
+file
+
+
+
+add
+
+enumarate_paths.py
+file
+
+
+
+add
+
+hyper-rsync.py
+file
+
+
+
+add
+
+find_dupes.pyc
+file
+
+
+
+add
+
+
+
+
+
+has-props
+has-prop-mods
+
+create_files.py
+file
+
+
+
+add
+
+checksum_directory.py
+file
+
+
+
+add
+

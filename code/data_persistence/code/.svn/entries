@@ -1,0 +1,163 @@
+8
+
+dir
+0
+https://py4sa.googlecode.com/svn/trunk/code/data_persistence/code
+https://py4sa.googlecode.com/svn
+add
+
+
+
+
+
+
+
+svn:special svn:externals svn:needs-lock
+
+zodb_withdraw_2.py
+file
+
+
+
+add
+
+custom_class_unpickle.py
+file
+
+
+
+add
+
+zodb_read.py
+file
+
+
+
+add
+
+sqlalchemy_inventory_query_all.py
+file
+
+
+
+add
+
+custom_class.py
+file
+
+
+
+add
+
+sqlalchemy_inventory_create_os.py
+file
+
+
+
+add
+
+zodb_write.py
+file
+
+
+
+add
+
+sqlalchemy_inventory_query_filter.py
+file
+
+
+
+add
+
+storm_retrieve_os.py
+file
+
+
+
+add
+
+storm_add_os.py
+file
+
+
+
+add
+
+custom_class_zodb.py
+file
+
+
+
+add
+
+zodb_custom_class.py
+file
+
+
+
+add
+
+zodb_write_nocommit.py
+file
+
+
+
+add
+
+storm_retrieve_os_filter.py
+file
+
+
+
+add
+
+custom_class_unpickle_noimport.py
+file
+
+
+
+add
+
+custom_class_yaml.py
+file
+
+
+
+add
+
+storm_model.py
+file
+
+
+
+add
+
+custom_class_unyaml.py
+file
+
+
+
+add
+
+custom_class_pickle.py
+file
+
+
+
+add
+
+sqlalchemy_inventory_definition.py
+file
+
+
+
+add
+
+zodb_withdraw_1.py
+file
+
+
+
+add
+

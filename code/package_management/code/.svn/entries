@@ -1,0 +1,72 @@
+8
+
+dir
+0
+https://py4sa.googlecode.com/svn/trunk/code/package_management/code
+https://py4sa.googlecode.com/svn
+add
+
+
+
+
+
+
+
+svn:special svn:externals svn:needs-lock
+
+buildout_code
+dir
+
+
+
+add
+
+virtual_env_bootstrap.py
+file
+
+
+
+add
+
+hello_epm
+dir
+
+
+
+add
+
+distutils_ex.py
+file
+
+
+
+add
+
+egg-example
+dir
+
+
+
+add
+
+hello_epm.py
+file
+
+
+
+add
+
+liten-bootstrap.py
+file
+
+
+
+add
+
+symlinkfinder
+dir
+
+
+
+add
+

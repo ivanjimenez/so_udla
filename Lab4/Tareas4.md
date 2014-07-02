@@ -22,6 +22,8 @@ Indicaciones:
 
 
  * Visualiza el módulo: http://docs.python.org/2/library/os.html
- * Utiliza las siguientes funciones: os.walk
+ * Utiliza las siguientes funciones: 
+ 
+ os.walk
 
  

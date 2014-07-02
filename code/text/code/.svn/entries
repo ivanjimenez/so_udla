@@ -1,0 +1,135 @@
+8
+
+dir
+0
+https://py4sa.googlecode.com/svn/trunk/code/text/code
+https://py4sa.googlecode.com/svn
+add
+
+
+
+
+
+
+
+svn:special svn:externals svn:needs-lock
+
+apache_log_parser_regex.py
+file
+
+
+
+add
+
+test_apache_log_parser_split.py
+file
+
+
+
+add
+
+apache_log_parser_split.py
+file
+
+
+
+add
+
+apache_conf_docroot_replace.py
+file
+
+
+
+add
+
+elementtree_system_profile.py
+file
+
+
+
+add
+
+
+
+
+
+has-props
+has-prop-mods
+
+system_profiler.xml
+file
+
+
+
+add
+
+tomcat-users.xml
+file
+
+
+
+add
+
+
+
+
+
+has-props
+has-prop-mods
+
+elementtree_tomcat_users.py
+file
+
+
+
+add
+
+sys_stdin_readline.py
+file
+
+
+
+add
+
+quotes.pl
+file
+
+
+
+add
+
+
+
+
+
+has-props
+has-prop-mods
+
+re_loop_nocompile.py
+file
+
+
+
+add
+
+re_loop_compile.py
+file
+
+
+
+add
+
+sys_stdin_readline_enumerate.py
+file
+
+
+
+add
+
+test_apache_log_parser_regex.py
+file
+
+
+
+add
+

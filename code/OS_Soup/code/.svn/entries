@@ -1,0 +1,163 @@
+8
+
+dir
+0
+https://py4sa.googlecode.com/svn/trunk/code/OS_Soup/code
+https://py4sa.googlecode.com/svn
+add
+
+
+
+
+
+
+
+svn:special svn:externals svn:needs-lock
+
+fingerprint.pyc
+file
+
+
+
+add
+
+
+
+
+
+has-props
+has-prop-mods
+
+config.ini
+file
+
+
+
+add
+
+cross_platform.py
+file
+
+
+
+add
+
+dispatch.py
+file
+
+
+
+add
+
+threaded_dispatch.py
+file
+
+
+
+add
+
+cross_platform.pyc
+file
+
+
+
+add
+
+
+
+
+
+has-props
+has-prop-mods
+
+buildnetwork.ini
+file
+
+
+
+add
+
+nuke.py
+file
+
+
+
+add
+
+advanced_dispatch1.py
+file
+
+
+
+add
+
+itunes.py
+file
+
+
+
+add
+
+.fingerprint.py.swp
+file
+
+
+
+add
+
+
+
+
+
+has-props
+has-prop-mods
+
+pyobjc_itunes.py
+file
+
+
+
+add
+
+create_package.py
+file
+
+
+
+add
+
+pyinotify_watch.py
+file
+
+
+
+add
+
+dispatch1.py
+file
+
+
+
+add
+
+hello_osascript.osa
+file
+
+
+
+add
+
+
+
+
+
+has-props
+has-prop-mods
+
+fingerprint.py
+file
+
+
+
+add
+

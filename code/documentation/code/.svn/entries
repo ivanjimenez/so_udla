@@ -1,0 +1,128 @@
+8
+
+dir
+0
+https://py4sa.googlecode.com/svn/trunk/code/documentation/code
+https://py4sa.googlecode.com/svn
+add
+
+
+
+
+
+
+
+svn:special svn:externals svn:needs-lock
+
+email_pop3.py
+file
+
+
+
+add
+
+summary_report.py
+file
+
+
+
+add
+
+hello_pdf.py
+file
+
+
+
+add
+
+helloworld.pdf
+file
+
+
+
+add
+
+smtp_simple.py
+file
+
+
+
+add
+
+email_imap.py
+file
+
+
+
+add
+
+bytes_ip_bar.png
+file
+
+
+
+add
+
+
+
+
+
+has-props
+has-prop-mods
+
+pdf_diskreport.py
+file
+
+
+
+add
+
+server_list.rst
+file
+
+
+
+add
+
+doc.rst
+file
+
+
+
+add
+
+authentication_email.py
+file
+
+
+
+add
+
+disk_report.pdf
+file
+
+
+
+add
+
+bytes_ip_pie.png
+file
+
+
+
+add
+
+
+
+
+
+has-props
+has-prop-mods
+
+pdf_MIME_email.py
+file
+
+
+
+add
+

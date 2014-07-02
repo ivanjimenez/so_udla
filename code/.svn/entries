@@ -1,0 +1,114 @@
+8
+
+dir
+0
+https://py4sa.googlecode.com/svn/trunk/code
+https://py4sa.googlecode.com/svn
+add
+
+
+
+
+
+
+
+svn:special svn:externals svn:needs-lock
+
+cleansvn.py
+file
+
+
+
+add
+
+gui
+dir
+
+
+
+add
+
+text
+dir
+
+
+
+add
+
+commandline
+dir
+
+
+
+add
+
+processes
+dir
+
+
+
+add
+
+OS_Soup
+dir
+
+
+
+add
+
+package_management
+dir
+
+
+
+add
+
+pragmatic
+dir
+
+
+
+add
+
+data
+dir
+
+
+
+add
+
+documentation
+dir
+
+
+
+add
+
+network
+dir
+
+
+
+add
+
+intro
+dir
+
+
+
+add
+
+data_persistence
+dir
+
+
+
+add
+
+snmp
+dir
+
+
+
+add
+

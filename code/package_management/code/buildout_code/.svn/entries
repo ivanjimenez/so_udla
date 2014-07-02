@@ -1,0 +1,30 @@
+8
+
+dir
+0
+https://py4sa.googlecode.com/svn/trunk/code/package_management/code/buildout_code
+https://py4sa.googlecode.com/svn
+add
+
+
+
+
+
+
+
+svn:special svn:externals svn:needs-lock
+
+bootstrap.py
+file
+
+
+
+add
+
+buildout.cfg
+file
+
+
+
+add
+

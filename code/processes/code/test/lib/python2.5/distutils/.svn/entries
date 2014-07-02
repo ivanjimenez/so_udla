@@ -1,0 +1,44 @@
+8
+
+dir
+0
+https://py4sa.googlecode.com/svn/trunk/code/processes/code/test/lib/python2.5/distutils
+https://py4sa.googlecode.com/svn
+add
+
+
+
+
+
+
+
+svn:special svn:externals svn:needs-lock
+
+distutils.cfg
+file
+
+
+
+add
+
+__init__.py
+file
+
+
+
+add
+
+__init__.pyc
+file
+
+
+
+add
+
+
+
+
+
+has-props
+has-prop-mods
+
