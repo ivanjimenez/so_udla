@@ -49,7 +49,8 @@ FCFS algorithm
 '''
 def FCFS(requests, initialPosition):
     position = initialPosition
-    movement = 0
+    moveme
+    nt = 0
    
     for x in range(len(requests)):
         movement += abs(position - requests[x])
